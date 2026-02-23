@@ -102,5 +102,5 @@ response = agent_executor.invoke({"input": "東京の１週間の天気予報を
 markdown_content =  convert_to_markdown(response)
 if not os.path.exists("./out"):
   os.makedirs("./out")
-with open(f"./out/res.md", "w", encoding="utf-8") as f:
+with open(f"./out/weather_agent.md", "w", encoding="utf-8") as f:
   f.write(markdown_content)
