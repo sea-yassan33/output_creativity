@@ -1,2 +1,6 @@
 zz_note
 zz_note/*
+__pycache__
+__pycache__/*
+.pytest_cache
+.pytest_cache/*
