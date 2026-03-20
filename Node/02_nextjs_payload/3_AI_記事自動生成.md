@@ -235,7 +235,7 @@ export const Posts: CollectionConfig = {
 - .env
 
 ```sh
-OPENAI_API_KEY=xxxxxxxxxxxxxxxxxx
+GOOGLE_AI_ST_API=xxxxxxxxxxxxxxxxxx
 ```
 
 ## パスの修正
