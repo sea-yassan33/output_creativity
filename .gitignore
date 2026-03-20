@@ -4,3 +4,4 @@ __pycache__
 __pycache__/*
 .pytest_cache
 .pytest_cache/*
+Node/02_nextjs_payload/_bk/*
