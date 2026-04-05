@@ -40,7 +40,12 @@ prompt = ChatPromptTemplate.from_messages(
 ## Chainを作成
 chain = prompt | llm | StrOutputParser()
 ## Chain実行
-res = chain.invoke({"dish":"カレーライス"}, config={"callbacks": [langfuse_handler]})
+res = chain.invoke({"dish":"カレーライス"}, config={
+  "callbacks": [langfuse_handler],
+  "metadata": {
+    "langfuse_tags": ["test260405"]
+    }
+  })
 ## ログデータを送信をLangFuseに送信
 langfuse.flush()
 # ▼▼▼ 出力関連 ▼▼▼
