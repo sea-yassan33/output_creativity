@@ -21,3 +21,7 @@
 ### Added
 - WSL
 - Oracle Linux
+
+## 2026-04-05
+### Added
+- Langfuse
