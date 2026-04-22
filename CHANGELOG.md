@@ -25,3 +25,7 @@
 ## 2026-04-05
 ### Added
 - Langfuse
+
+## 2026-04-23
+### Added
+- [00_python基礎.md](./python/Document/00_python基礎.md)
