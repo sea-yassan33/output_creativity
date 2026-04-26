@@ -1,6 +1,9 @@
 # anthropic mythosについて
 
-- https://red.anthropic.com/2026/mythos-preview/
+- 下記URLはanthropic mythosの性能について記されたページとなります。（英文）
+  - https://red.anthropic.com/2026/mythos-preview/
+
+## ====== 【※下記は上記URLの記事を基にAIが生成した内容となります。※】======
 
 Anthropicが開発した最新かつ最も強力なAIモデル**「Claude Mythos Preview」**のサイバーセキュリティ能力に関する評価報告です。
 
