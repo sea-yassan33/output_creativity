@@ -1,0 +1,9 @@
+[general]
+email = ""
+
+[browser]
+gatherUsageStats = false
+
+# 追加：ツールバーを非表示
+[client]
+toolbarMode = "viewer"
