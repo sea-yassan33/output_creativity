@@ -29,3 +29,7 @@
 ## 2026-04-23
 ### Added
 - [00_python基礎.md](./python/Document/00_python基礎.md)
+
+## 2026-05-04
+### Added
+- [脆弱性診断](./Other/脆弱性診断/01_実施手順.md)
