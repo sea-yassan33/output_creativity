@@ -5,3 +5,7 @@ __pycache__/*
 .pytest_cache
 .pytest_cache/*
 Node/02_nextjs_payload/_bk/*
+python/03_local_llm_assessment/_bk
+python/03_local_llm_assessment/_bk/*
+Other/脆弱性診断/_bk
+Other/脆弱性診断/_bk/*
