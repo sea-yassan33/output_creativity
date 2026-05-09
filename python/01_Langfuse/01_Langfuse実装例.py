@@ -3,7 +3,7 @@ import warnings
 warnings.filterwarnings('ignore')
 import os
 from dotenv import load_dotenv
-load_dotenv(".env")
+load_dotenv()
 # LangChain
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate

@@ -23,14 +23,14 @@ meta_map = {}
 # ============================================================
 with open("./data/paper01_maintext.md", "r", encoding="utf-8") as f:
   text = f.read()
-token_count = myfunc.count_tokens(text)
+token_count = common_func.count_tokens(text)
 print(f"トークン数: {token_count:,}")
 print(f"文字数: {len(text):,}")
 print(f"トークン/文字 比率: {token_count / len(text):.2f}")
 # ============================================================
-# Step 1: ローカルLLMで論文の概要を生成
+# Step 1: テンプレート準備
 # ============================================================
-# テンプレート
+## 各チャンク毎に要点を生成する際のテンプレート
 map_prompt = ChatPromptTemplate.from_template("""
 以下のテキストの要点を簡潔にまとめてください：
 
@@ -38,6 +38,7 @@ map_prompt = ChatPromptTemplate.from_template("""
 
 要点：
 """)
+## 最終的に概要生成する際のテンプレート
 reduce_prompt = ChatPromptTemplate.from_template("""
 以下の複数の要点をまとめて、論文全体の概要を500字以内で作成してください：
 
@@ -50,7 +51,7 @@ reduce_prompt = ChatPromptTemplate.from_template("""
 # ============================================================
 loader = TextLoader("./data/paper01_maintext.md", encoding="utf-8")
 docs = loader.load()
-## テクストを分割
+## テキストを分割
 text_splitter = RecursiveCharacterTextSplitter(
   chunk_size=3000,       # トークンではなく文字数に注意
   chunk_overlap=300,     # 文脈の連続性を確保
@@ -61,11 +62,9 @@ text_splitter = RecursiveCharacterTextSplitter(
 )
 ## ドキュメントを分割
 splitter_docs = text_splitter.split_documents(docs)
-## 分割した物をtext化
-context_text = "\n\n".join([doc.page_content for doc in splitter_docs])
 print(f'【チャンク数】{len(splitter_docs)}')
 # ============================================================
-# Step 3: 各チャンク毎に概要を生成
+# Step 3: 各チャンク毎に要点を生成
 # ============================================================
 chunk_summaries = []
 chain = map_prompt | llm | StrOutputParser()
@@ -76,7 +75,7 @@ for i, chunk in enumerate(splitter_docs):
   print(f"チャンク {i+1}/{len(splitter_docs)} 完了")
 # callbackの情報をmap形式で格納
 meta_map["llm_call01"] = callback
-## 各チャンクで生成した概要を統合
+## 各チャンクで生成した要点を統合
 combined = "\n\n".join(chunk_summaries)
 # ============================================================
 # Step 4: 最終の概要を生成
@@ -87,9 +86,9 @@ final_summary = chain02.invoke({"summaries": combined},config={"callbacks": [cal
 # callbackの情報をmap形式で格納
 meta_map["llm_call02"] = callback
 # ============================================================
-# Step 5: 生成物の出力とトークン量の確認
+# Step 5: 生成コンテンツの出力とトークン量の確認
 # ============================================================
-## 生成物出力（評価時に使用）
-myfunc.res_output_md(response=final_summary,dir_str="data",file_name=f"test03-summary")
+## 生成コンテンツ出力（評価時に使用）
+common_func.res_output_md(response=final_summary,dir_str="data",file_name=f"test03-summary")
 ## LLMトークン量確認
-myfunc.token_check(meta_map)
+common_func.token_check(meta_map)

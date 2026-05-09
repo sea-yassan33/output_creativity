@@ -56,14 +56,19 @@
 | 動画・音声の処理が必要 | **Gemini 2.5 Flash** |
 | Ollamaなどで手軽に試したい | **Gemma 3 4B** |
 
-- python
+**【python: LangChain関連のライブラリ】**
 
-```sh
-pip install langchain
-pip install langchain-google-genai langchain-huggingface langchain-classic
-```
+- 今回使用するLangChain関連は下記の通りです。
 
-**※LangChain関連以外のライブラリに関して各々インストールを実施してください。※**
+|ライブラリ名|URL<deps.dev>|
+|:----|:----|
+|langchain|https://deps.dev/pypi/langchain|
+|langchain-google-genai|https://deps.dev/pypi/langchain-google-genai|
+|langchain-huggingface|https://deps.dev/pypi/langchain-huggingface|
+|langchain-classic|https://deps.dev/pypi/langchain-classic|
+
+> LangChainのバージョンは指定しませんので、インストール前に確認をお願いします。
+> LangChain関連以外のライブラリに関して各々インストールを実施してください。
 
 ### 共通の関数
 
@@ -169,7 +174,7 @@ class OllamaMetadataCallback(BaseCallbackHandler):
     }
 ```
 
-**[Callbackの仕様例]**
+**[Callbackの使用例]**
 
 ```py
 
@@ -282,9 +287,9 @@ llm_call02　←　3回目の呼び出し
 
 ```
 
-> LLMによる定性評価のsummary
+> 評価用テンプレートを用いて類似度評価を分析
 
-- [LLMによる定性評価のsummary](./out/test03-summary-analysis.md)
+- [評価用テンプレートを用いて類似度評価を分析結果](./out/test03-summary-analysis.md)
 
 > **上記プログラム実行時のトークン量**
 
@@ -327,11 +332,34 @@ llm_call2-01
 ```py
 from langchain_classic.evaluation import load_evaluator
 
+# 【labeled_criteria評価でパターン】
 evaluator = load_evaluator(
   "labeled_criteria",　# 第一引数（必須）：評価器の種類
   llm=llm,　# モデルを指定
   criteria="correctness" # 「labeled_criteria」設定時に組み込み基準をいれる
 )
+
+# 【複数の評価指標を指定するパターン】
+## 評価指標をmap形式で用意する
+criteria_list = {
+  "conciseness":  "概要は簡潔にまとめられているか？",
+  "completeness": "重要なポイントが網羅されているか？",
+}
+## 評価結果を格納する箱(List形式)を用意
+result_criteria_list = []
+for name, description in criteria_list.items():
+  evaluator = load_evaluator(
+    "criteria",　# ←入力＋予測のみで評価
+    llm=llm_api_gemini,
+    criteria={name: description}# ←評価基準を格納
+  )
+  ## 設定評価基準毎に評価を実施
+  result = evaluator.evaluate_strings(
+    prediction=generated_summary,
+    input=paper_text
+  )
+  ## 評価結果を格納
+  result_criteria_list.append(result)
 ```
 
 > 第一引数の値について
@@ -346,12 +374,13 @@ evaluator = load_evaluator(
 |cot_qa|Chain-of-Thought付きQ&A評価|
 
 
-> 評価器load_evaluator時、criteriaのパラメータについて
+> 評価器の種類load_evaluator時、criteriaのパラメータについて
 
 |設定値|用途|
 |:----|:----|
-|correctness|参照テキストと比較して正確か判断。正解データを入れる必要あり。（labeled_criteria専用）|
+|correctness|参照テキストと比較して正確か判断。期待されるデータを入れる必要あり。（labeled_criteria専用）|
 |conciseness|簡潔にまとめられているか|
+|completeness|重要なポイントが網羅されているか|
 |relevance|入力に対して関連性があるか|
 |coherence|論理的な流れ・一貫性があるか|
 |helpfulness|役に立つ内容か|
@@ -461,19 +490,23 @@ llm_call3-04
 
 ## 総括
 
-> token-summary
+> 今回、各セクションで使用されたトークン量と料金（gemini-2.5-flashベース）は下記のとおりです。
 
 |セクション|呼び出し回数|入力トークン|出力トークン|料金(JPY)|
 |:----|:----|:----|:----|:----|
 |概要生成|3|2,908|1,048|￥0.55|
-|1・2次評価|1|762|1,747|￥0.72|
+|2次評価|1|762|1,747|￥0.72|
 |3次評価|6|10,388|8,523|￥3.81|
 ||||||
 |合計|9|14,058|11,318|￥4.37|
 
-今回、論文の概要生成から3次評価までLLMモデルを9回呼び出し、「gemini-2.5-flash」をベースに試算した結果4.37円かかる計算となりました。
-3次評価の結果において元の概要と生成された概要、一致している結果となりました。
-様々な評価指標があるため、何を目的に評価をしているのか明確にし、それに応じて評価方法（パラメータ）を調整する必要があるとおもいました。
+> 今回、論文の概要生成から3次評価までLLMモデルを9回呼び出し、「gemini-2.5-flash」をベースに試算した結果4.37円かかる計算となりました。
+
+> 1次評価でテンプレートは500文字以内と書いてるのに実際は820文字出力されている結果となりました。テンプレートの調整や文章校正用のLLMが必要と思われます
+
+> 3次評価の結果において参照テキストと比較して正確性の観点で「合格」判定となりました。
+
+> 様々な評価指標があるため、何を目的に評価をしているのか明確にし、それに応じて評価方法（パラメータ）を調整する必要と思われます。
 
 ## 参考
 - [Amplifiers or Equalizers? A Longitudinal Study of LLM Evolution in Software Engineering Project-Based Learning](https://arxiv.org/abs/2511.23157)

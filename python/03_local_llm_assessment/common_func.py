@@ -120,7 +120,6 @@ class GoogleMetadataCallback(BaseCallbackHandler):
     if self.call_count == 0:
       self.start_time = time.time()
     self._call_start_time = time.time()   # 今回の呼び出し開始
-    # プロンプト文字数の累積
     self.str_count += len(prompts[0])
     # デバッグ確認用（必要なら有効化）
     # print(f"\n[on_llm_start #{self.call_count + 1}]")

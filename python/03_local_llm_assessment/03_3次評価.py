@@ -5,7 +5,7 @@ import sys
 sys.dont_write_bytecode = True
 import os
 from dotenv import load_dotenv
-load_dotenv("../.env")
+load_dotenv()
 import pandas as pd
 import common_func
 from common_func import GoogleMetadataCallback
@@ -80,19 +80,20 @@ def print_evaluation_report_markdown(df: pd.DataFrame) -> str:
     lines.append("\n---\n")
   return '\n'.join(lines)
 # ============================================================
-# Step 1: 準備
+# Step 1: 論文の本文・期待する概要・生成された概要を読み込む
 # ============================================================
 ## 論文の本文
 with open("./data/paper01_maintext.md", "r", encoding="utf-8") as f:
   paper_text = f.read()
-## 論文の概要
+## 期待する概要
 with open("./data/paper01_oberveiw.md", "r", encoding="utf-8") as f:
   reference_summary = f.read()
 ## 生成された概要
 with open("./data/test03-summary.md", "r", encoding="utf-8") as f:
   generated_summary = f.read()
 # ============================================================
-# Step 2: labeled_criteria: referenceと比較（Call回数：1回）
+# Step 2:labeled_criteria評価＜参照テキスト(reference)を用いる＞
+# （Call回数：1回）
 # ============================================================
 google_callback = GoogleMetadataCallback()
 llm_api_gemini = ChatGoogleGenerativeAI(
@@ -113,11 +114,11 @@ labeled_result = labeled_evaluator.evaluate_strings(
 )
 meta_map["llm_call3-01"] = google_callback
 ## 結果を翻訳
-prompt = ChatPromptTemplate.from_template(
+trans_prompt = ChatPromptTemplate.from_template(
       "以下を自然な日本語に翻訳してください:\n{text}"
   )
 ollma_callback = OllamaMetadataCallback()
-chain = prompt | llm | StrOutputParser()
+chain = trans_prompt | llm | StrOutputParser()
 trans_result = chain.invoke(
   {"text": labeled_result['reasoning']},
   config={"callbacks": [ollma_callback]}
@@ -126,7 +127,7 @@ meta_map["llm_call3-02"] = ollma_callback
 result01 = [labeled_result['score'],labeled_result['value'],trans_result]
 result_map["result01"] =result01
 # ============================================================
-# Step 3: criteria カスタム基準でループ評価
+# Step 3: criteria評価＜入力＋予測のみで評価＞
 # ============================================================
 google_callback = GoogleMetadataCallback()
 llm_api_gemini = ChatGoogleGenerativeAI(
@@ -149,11 +150,8 @@ for name, description in criteria_list.items():
   result_criteria_list.append(result)
 meta_map["llm_call3-03"] = google_callback
 ## 結果を翻訳
-prompt = ChatPromptTemplate.from_template(
-  "以下を自然な日本語に翻訳してください:\n{text}"
-)
 ollma_callback = OllamaMetadataCallback()
-chain = prompt | llm | StrOutputParser()
+chain = trans_prompt | llm | StrOutputParser()
 trans_result_list = []
 for result_criteria in result_criteria_list:
   trans_result = chain.invoke(
@@ -167,10 +165,10 @@ for i in range(len(result_criteria_list)):
   map_key = f"result0{i+2}"
   result_map[map_key] = result_temp
 # ============================================================
-# Step 4: summaryの出力とトークン量の確認
+# Step 4: 評価結果の出力とトークン量の確認
 # ============================================================
 ## LLMトークン量確認
-myfunc.token_check(meta_map)
+common_func.token_check(meta_map)
 # 出力結果をDataFrameにまとめる
 df = pd.DataFrame.from_dict(
     result_map,
@@ -185,4 +183,4 @@ label_map = {
 df['evaluation_label'] = df['result_id'].map(label_map)
 # サマリーを出力
 md_text = print_evaluation_report_markdown(df)
-myfunc.res_output_md(response=md_text,file_name=f"test04-assesment_summary")
+common_func.res_output_md(response=md_text,file_name=f"test04-assesment_summary")

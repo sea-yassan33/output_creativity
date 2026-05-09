@@ -9,16 +9,11 @@ load_dotenv()
 import common_func
 from common_func import GoogleMetadataCallback
 ## LangChain系ライブラリ
-from langchain_community.chat_models import ChatOllama
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_classic.evaluation import load_evaluator, EmbeddingDistance
-## model
-embeddings = HuggingFaceEmbeddings(model_name="sonoisa/sentence-bert-base-ja-en-mean-tokens-v2")
-llm = ChatOllama(model="gemma3:4b",base_url=os.environ['OLLAM_URL'],temperature=0.0)
-llm_api_gemini = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=os.environ['GOOGLE_AI_ST_API'], temperature=0)
 ## 定数
 meta_map = {}
 # 関数
@@ -63,8 +58,11 @@ with open("./data/test03-summary.md", "r", encoding="utf-8") as f:
 # Step 2: セマンティック評価
 # ============================================================
 # 評価器のセットアップ
+embeddings = HuggingFaceEmbeddings(
+  model_name="sonoisa/sentence-bert-base-ja-en-mean-tokens-v2"
+)
 evaluator = load_evaluator(
-    "embedding_distance",           # 予測 vs 参照の比較
+    "embedding_distance",           # Embeddingベースの類似度評価
     embeddings=embeddings,   # ローカルEmbedding
     distance_metric=EmbeddingDistance.COSINE  # 自然言語に最適
 )
@@ -81,7 +79,7 @@ res_assesment = evaluator.evaluate_strings(
 # ============================================================
 similarity = evaluation_analysis01(res_assesment,final_summary,expected_text)
 # ============================================================
-# Step 4: LLMによる定性評価
+# Step 4: 類似度のスコアについて分析
 # ============================================================
 ## 評価用テンプレート
 analysis_prompt = ChatPromptTemplate.from_template("""
@@ -100,6 +98,11 @@ analysis_prompt = ChatPromptTemplate.from_template("""
 指摘（箇条書き）:
 """)
 ## chain
+llm_api_gemini = ChatGoogleGenerativeAI(
+  model="gemini-2.5-flash",
+  google_api_key=os.environ['GOOGLE_AI_ST_API'],
+  temperature=0
+)
 chain = analysis_prompt | llm_api_gemini | StrOutputParser()
 google_callback = GoogleMetadataCallback()
 analysis = chain.invoke({
@@ -112,6 +115,6 @@ meta_map["llm_call2-01"] = google_callback
 # Step 5: summaryの出力とトークン量の確認
 # ============================================================
 ## summary内容出力
-myfunc.res_output_md(response=analysis,file_name=f"test03-summary-analysis")
+common_func.res_output_md(response=analysis,file_name=f"test03-summary-analysis")
 ## LLMトークン量確認
-myfunc.token_check(meta_map)
+common_func.token_check(meta_map)

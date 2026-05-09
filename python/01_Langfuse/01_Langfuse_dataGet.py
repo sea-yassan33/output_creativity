@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-load_dotenv(".env")
+load_dotenv()
 import pandas as pd
 # clickhouse
 import clickhouse_connect
