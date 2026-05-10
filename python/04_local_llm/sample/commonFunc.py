@@ -71,7 +71,7 @@ class OllamaMetadataCallback(BaseCallbackHandler):
   def summary(self):
     total = self.total_prompt_tokens + self.total_eval_tokens
     print("="*30)
-    print("【呼び出しサマリー】")
+    print("【コールバックsummary】")
     print(f"呼び出し回数    : {self.call_count}")
     print(f"合計処理時間    : {self.elapsed_min:.2f}分")
     print(f"入力トークン合計: {self.total_prompt_tokens:,}")
