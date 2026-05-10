@@ -76,13 +76,14 @@ class OllamaMetadataCallback(BaseCallbackHandler):
         )
   def summary(self):
     total = self.total_prompt_tokens + self.total_eval_tokens
+    print("="*30)
     print("【📊 トークン集計】")
     print(f"呼び出し回数    : {self.call_count}")
     print(f"合計処理時間    : {self.elapsed_min:.2f}分")
     print(f"入力トークン合計: {self.total_prompt_tokens:,}")
     print(f"出力トークン合計: {self.total_eval_tokens:,}")
     print(f"総トークン合計  : {total:,}")
-    print("="*40)
+    print("="*30)
   def meta_data(self):
     prompt_tokens = self.total_prompt_tokens
     eval_tokens = self.total_eval_tokens
@@ -169,13 +170,14 @@ class GoogleMetadataCallback(BaseCallbackHandler):
     #   "total_tokens"        : total_tokens,
     #   "elapsed_min"         : round(self.elapsed_min, 3),
     # }
+    print("="*30)
     print("【📊 トークン集計】")
     print(f"呼び出し回数    : {self.call_count}")
     print(f"合計処理時間    : {self.elapsed_min:.2f}分")
     print(f"入力トークン合計: {self.total_prompt_tokens:,}")
     print(f"出力トークン合計: {self.total_eval_tokens:,}")
     print(f"総トークン合計  : {total_tokens:,}")
-    print("="*40)
+    print("="*30)
   def meta_data(self):
     prompt_tokens = self.total_prompt_tokens
     eval_tokens = self.total_eval_tokens
@@ -189,7 +191,7 @@ class GoogleMetadataCallback(BaseCallbackHandler):
 # ▼▼▼ 関数　▼▼▼
 def get_usd_to_jpy_yfinance() -> float:
   """
-  日米為替レート取得
+  ドル円為替レート取得
   """
   try:
     ticker = yf.Ticker("USDJPY=X")
@@ -224,14 +226,14 @@ def print_cost_report(cost: dict):
   """
   トークン・コストレポート出力
   """
-  print(f"{'='*35}")
+  print(f"{'='*30}")
   print(f"入力トークン:   {cost['input_tokens']:,}")
   print(f"出力トークン:   {cost['output_tokens']:,}")
   print(f"為替レート:     1 USD = ¥{cost['usd_to_jpy']:.2f}")
   print(f"ベースモデル:    {cost['referenc_model']}")
   print(f"料金 (USD):     ${cost['total_cost_usd']:.6f}")
   print(f"料金 (JPY):     ¥{cost['total_cost_jpy']:.2f}")
-  print(f"{'='*35}")
+  print(f"{'='*30}")
 def res_output_md(response,dir_str=None,file_name=None):
   """
   markdownファイル出力
@@ -324,7 +326,7 @@ def token_check (meta_map):
   call_backのmeta情報からトークン量を出力
   """
   for call_neme, meta_data in meta_map.items():
-    print("="*40)
+    print("="*30)
     print(f"{call_neme}")
     meta_data.summary()
     cost = calc_cost(
