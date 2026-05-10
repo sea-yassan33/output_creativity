@@ -1,6 +1,8 @@
-# CPUのみで動かす場合
+# CPUのみでローカルLLMが動くか検証
 
-CPUのみで動かす場合のモデルやLangChainを使用した実装例を紹介します。
+CPUのみでローカルLLM（Gemma3シリーズ）が動くか検証します。
+
+OllamaとPythonのLangChainを用いて検証を行います。
 
 # CPUのみでの動作要件
 
