@@ -33,3 +33,8 @@
 ## 2026-05-04
 ### Added
 - [脆弱性診断](./Other/脆弱性診断/01_実施手順.md)
+
+## 2026-05-10
+### Added
+- [ブラッシュアップ_ローカルLLM](./python/04_local_llm/ブラッシュアップ_ローカルLLM_202605.md)
+- [CPUのみで動かす場合](./python/04_local_llm/only_cpu.md)
