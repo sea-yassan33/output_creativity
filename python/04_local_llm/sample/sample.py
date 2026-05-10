@@ -48,5 +48,6 @@ res = chain.invoke(
   config={"callbacks": [callback]}
 )
 ## md形式出力
-commonFunc.res_output_md(response=res,file_name="test-reveiw")
+#commonFunc.res_output_md(response=res,file_name="test-reveiw-270m")
+commonFunc.res_output_md(response=res,file_name="test-reveiw-1b")
 callback.summary()

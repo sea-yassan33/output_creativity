@@ -173,7 +173,7 @@ res = chain.invoke(
 ## 5.結果を出力
 ```py
 ## md形式出力
-myfunc.res_output_md(response=res,file_name="test-reveiw")
+commonFunc.res_output_md(response=res,file_name="test-reveiw-●●")
 callback.summary()
 ```
 
