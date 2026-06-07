@@ -38,3 +38,8 @@
 ### Added
 - [ブラッシュアップ_ローカルLLM](./python/04_local_llm/ブラッシュアップ_ローカルLLM_202605.md)
 - [CPUのみで動かす場合](./python/04_local_llm/only_cpu.md)
+
+## 2026-06-07
+### Added
+- [gemini_Langchai実装ソース](./python/00_source_code/2606_langChain/gemini_langchain.py)
+
