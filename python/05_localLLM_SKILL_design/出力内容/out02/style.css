@@ -1,0 +1,327 @@
+/* CSS Variables for Token Management */
+:root {
+    --color-ivory: #FAF7F2;
+    --color-deep-green: #1C3A2A;
+    --color-gold: #C9A96E;
+    --color-forest-start: #0a1f13;
+    --color-mid-gradient: #1c4d3b;
+    /* Slightly adjusted for better transition */
+    --color-forest-end: #2d5a3d;
+
+    /* Typography */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* Base Styles & Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: #333;
+    background-color: var(--color-ivory);
+    line-height: 1.6;
+    /* Global padding for content containers */
+    padding-top: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Typography Styling */
+h1,
+h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    /* Strong presence for headings */
+    letter-spacing: -0.03em;
+    color: var(--color-deep-green);
+}
+
+h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    /* Very large display size */
+    line-height: 1.1;
+    margin-bottom: 0.5em;
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+/* Utility Classes */
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --- CTA Button Styling --- */
+.btn-cta {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 2px solid var(--color-gold);
+    background-color: transparent;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.btn-cta:hover {
+    background-color: var(--color-gold);
+    color: var(--color-deep-green);
+    box-shadow: 0 8px 15px rgba(201, 169, 110, 0.3);
+}
+
+/* ============================================= */
+/* 1. HERO SECTION (Full Screen Gradient) */
+/* ============================================= */
+#hero {
+    height: 100vh;
+    background: linear-gradient(135deg, var(--color-forest-start) 0%, var(--color-deep-green) 50%, var(--color-forest-end) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    /* Ensures no content spills out */
+}
+
+.hero-content {
+    color: var(--color-ivory);
+    max-width: 800px;
+    padding: 2rem;
+    /* Adding a slight text shadow to lift the text off the dark background */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    margin-bottom: 2rem;
+}
+
+
+/* ============================================= */
+/* 2. EXPERIENCE SECTION (3 Columns) */
+/* ============================================= */
+#experience {
+    background-color: var(--color-ivory);
+    padding: 6rem 0;
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 4rem;
+}
+
+.exp-card {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid rgba(28, 58, 42, 0.1);
+    /* Subtle border */
+    transition: all 0.3s ease;
+    /* Applying the signature gold accent subtly to the container edges */
+}
+
+.exp-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08), 0 0 0 3px var(--color-gold);
+}
+
+.exp-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+    /* Gold color for the icon/emoji */
+    filter: drop-shadow(0 2px 3px rgba(201, 169, 110, 0.5));
+}
+
+.exp-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-deep-green);
+}
+
+
+/* ============================================= */
+/* 3. ROOM SHOWCASE (Card Format) */
+/* ============================================= */
+#rooms {
+    background-color: #fcfaf7;
+    /* Slightly off-ivory for separation */
+    padding: 8rem 0;
+}
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.room-card {
+    background-color: var(--color-ivory);
+    padding: 2rem;
+    border: 1px solid rgba(28, 58, 42, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Springy transition */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect with shadow and subtle lift */
+.room-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(28, 58, 42, 0.1), 0 0 0 1px var(--color-gold);
+}
+
+.room-card h3 {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-deep-green);
+}
+
+.room-meta span {
+    display: inline-block;
+    background-color: var(--color-gold);
+    color: var(--color-deep-green);
+    padding: 0.2em 0.6em;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+/* ============================================= */
+/* 4. FOOTER */
+/* ============================================= */
+#footer {
+    background-color: var(--color-deep-green);
+    padding: 5rem 0 2rem;
+    color: #dcdcdc;
+    /* Light text on dark background */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.footer-section h4 {
+    color: var(--color-gold);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section li {
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+.footer-section li:hover {
+    opacity: 1;
+    /* Adding a subtle gold underline on hover */
+    text-decoration: underline var(--color-gold);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================= */
+/* ANIMATION STYLES (Scroll Reveal) */
+/* ============================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Class applied by JS to trigger animation */
+.reveal {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Smoother 'pop' */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+    .experience-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Adjusting Hero on mobile */
+    h1 {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+    }
+
+    /* Stacking columns for smaller screens */
+    .experience-grid,
+    .room-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    #hero {
+        height: 80vh;
+        /* Shorter hero on mobile */
+    }
+
+    .container,
+    #rooms,
+    #experience {
+        padding: 3rem 0;
+    }
+}

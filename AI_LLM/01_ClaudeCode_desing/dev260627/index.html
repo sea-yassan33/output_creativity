@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYLVAN — Where Nature Rests</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header" id="site-header">
+    <a href="#" class="logo" aria-label="SYLVAN Home">SYLVAN</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#rooms" class="nav__link">Rooms</a>
+      <a href="#experiences" class="nav__link">Experiences</a>
+      <a href="#about" class="nav__link">About</a>
+      <a href="#contact" class="nav__link nav__link--cta">Book a Stay</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" aria-label="Welcome">
+    <div class="hero__canopy" aria-hidden="true">
+      <div class="canopy__layer canopy__layer--1"></div>
+      <div class="canopy__layer canopy__layer--2"></div>
+      <div class="canopy__layer canopy__layer--3"></div>
+    </div>
+    <div class="hero__content reveal">
+      <p class="hero__eyebrow">Established in the forest, 1923</p>
+      <h1 class="hero__headline">
+        <span class="hero__headline-line">The Stillness</span>
+        <span class="hero__headline-line hero__headline-line--indent">of Nature</span>
+        <span class="hero__headline-line">Perfected.</span>
+      </h1>
+      <p class="hero__sub">A retreat where ancient forest meets considered comfort.</p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn btn--primary">Reserve Your Stay</a>
+        <a href="#rooms" class="btn btn--ghost">Explore the Rooms</a>
+      </div>
+    </div>
+    <div class="hero__scroll-cue" aria-hidden="true">
+      <span class="scroll-line"></span>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy reveal" id="about" aria-labelledby="philosophy-heading">
+    <div class="philosophy__inner">
+      <div class="philosophy__rule" aria-hidden="true"></div>
+      <p class="philosophy__quote" id="philosophy-heading">
+        "We did not build a hotel in the forest.<br>
+        We let the forest become the hotel."
+      </p>
+      <div class="philosophy__rule" aria-hidden="true"></div>
+      <p class="philosophy__body">
+        Nestled among century-old oaks at 1,200 metres, SYLVAN is a collection of 24 rooms
+        that takes its cue entirely from the land beneath it. Rough-sawn timber, hand-thrown
+        ceramics, and the unhurried rhythm of seasons replaced the conventions of luxury hospitality.
+      </p>
+      <div class="philosophy__markers" aria-hidden="true">
+        <div class="marker">
+          <span class="marker__value">1,200m</span>
+          <span class="marker__label">Elevation</span>
+        </div>
+        <div class="marker__divider"></div>
+        <div class="marker">
+          <span class="marker__value">24</span>
+          <span class="marker__label">Rooms &amp; Suites</span>
+        </div>
+        <div class="marker__divider"></div>
+        <div class="marker">
+          <span class="marker__value">100+</span>
+          <span class="marker__label">Year-old Oaks</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms -->
+  <section class="rooms reveal" id="rooms" aria-labelledby="rooms-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">Accommodation</span>
+      <h2 class="section-title" id="rooms-heading">Rest Within the Trees</h2>
+    </div>
+    <div class="rooms__grid">
+
+      <article class="room-card reveal-stagger">
+        <div class="room-card__emblem" aria-hidden="true">
+          <div class="emblem emblem--circle"></div>
+        </div>
+        <span class="room-card__category">Forest Room</span>
+        <h3 class="room-card__name">Oak & Moss</h3>
+        <p class="room-card__desc">
+          Ground-level rooms built into the hillside. Moss-covered stone walls
+          keep the temperature constant; the window faces a lichen-draped oak that
+          has stood for 180 years.
+        </p>
+        <ul class="room-card__details" aria-label="Room details">
+          <li>38 m²</li>
+          <li>Forest view</li>
+          <li>Stone bath</li>
+        </ul>
+        <a href="#contact" class="room-card__link">Enquire <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="room-card room-card--feature reveal-stagger">
+        <div class="room-card__emblem" aria-hidden="true">
+          <div class="emblem emblem--arc"></div>
+        </div>
+        <span class="room-card__category">Canopy Suite</span>
+        <h3 class="room-card__name">Above the Understory</h3>
+        <p class="room-card__desc">
+          Elevated on timber stilts at treetop height, the Canopy Suite wakes
+          with the birds. A hinoki-wood soaking tub sits at the edge of the
+          open terrace; the forest floor is twelve metres below.
+        </p>
+        <ul class="room-card__details" aria-label="Room details">
+          <li>64 m²</li>
+          <li>360° canopy view</li>
+          <li>Hinoki soaking tub</li>
+        </ul>
+        <a href="#contact" class="room-card__link">Enquire <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="room-card reveal-stagger">
+        <div class="room-card__emblem" aria-hidden="true">
+          <div class="emblem emblem--horizon"></div>
+        </div>
+        <span class="room-card__category">Ridge Villa</span>
+        <h3 class="room-card__name">The Long View</h3>
+        <p class="room-card__desc">
+          Set apart on the ridge, a private villa where the valley opens up
+          completely. A fire that can be lit from bed, a kitchen stocked each
+          morning, and silence that stretches as far as the eye can see.
+        </p>
+        <ul class="room-card__details" aria-label="Room details">
+          <li>120 m²</li>
+          <li>Valley panorama</li>
+          <li>Private fire &amp; kitchen</li>
+        </ul>
+        <a href="#contact" class="room-card__link">Enquire <span aria-hidden="true">→</span></a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Experiences -->
+  <section class="experiences reveal" id="experiences" aria-labelledby="exp-heading">
+    <div class="section-header">
+      <span class="section-eyebrow">While You're Here</span>
+      <h2 class="section-title" id="exp-heading">Days Without an Agenda</h2>
+    </div>
+    <div class="experiences__list">
+
+      <div class="exp-item reveal-stagger">
+        <div class="exp-item__visual" aria-hidden="true">
+          <div class="exp-visual exp-visual--dawn"></div>
+        </div>
+        <div class="exp-item__body">
+          <span class="exp-item__label">Dawn</span>
+          <h3 class="exp-item__title">Forest Bathing at First Light</h3>
+          <p class="exp-item__desc">
+            A guided walk through the old-growth section of the property,
+            moving slowly enough to hear the forest settle into the morning.
+            No phones. No destination.
+          </p>
+        </div>
+      </div>
+
+      <div class="exp-item exp-item--reverse reveal-stagger">
+        <div class="exp-item__visual" aria-hidden="true">
+          <div class="exp-visual exp-visual--table"></div>
+        </div>
+        <div class="exp-item__body">
+          <span class="exp-item__label">Table</span>
+          <h3 class="exp-item__title">Foraged &amp; Fire-Cooked</h3>
+          <p class="exp-item__desc">
+            Our kitchen team forages the surrounding woodland each morning.
+            Dinner is a single long table — all guests together —
+            lit by beeswax candles, served over open flame.
+          </p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal-stagger">
+        <div class="exp-item__visual" aria-hidden="true">
+          <div class="exp-visual exp-visual--water"></div>
+        </div>
+        <div class="exp-item__body">
+          <span class="exp-item__label">Water</span>
+          <h3 class="exp-item__title">The Spring Pool</h3>
+          <p class="exp-item__desc">
+            Fed by a natural spring at 14°C, the pool is unheated by design.
+            Cold immersion is followed by a cedar sauna built into the hillside.
+            Open from 5am. Private by arrangement.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="testimonial reveal" aria-label="Guest testimonial">
+    <blockquote class="testimonial__quote">
+      <p>
+        "Three days in, I stopped reaching for my phone.
+        By day five I couldn't tell you what the news had said
+        in the past week. That is the point of SYLVAN."
+      </p>
+      <footer class="testimonial__attribution">
+        <cite>— A. Lindqvist, Stockholm</cite>
+      </footer>
+    </blockquote>
+  </section>
+
+  <!-- Contact / Booking -->
+  <section class="contact reveal" id="contact" aria-labelledby="contact-heading">
+    <div class="contact__inner">
+      <div class="contact__text">
+        <span class="section-eyebrow">Arrive</span>
+        <h2 class="section-title" id="contact-heading">Plan Your Stay</h2>
+        <p class="contact__body">
+          We keep a small number of rooms deliberately. Enquire directly —
+          we respond within a single working day and are glad to help plan
+          your time in the forest.
+        </p>
+        <div class="contact__details">
+          <div class="contact__detail">
+            <span class="contact__detail-label">Telephone</span>
+            <a href="tel:+81-90-1234-5678" class="contact__detail-value">+81 90-1234-5678</a>
+          </div>
+          <div class="contact__detail">
+            <span class="contact__detail-label">Email</span>
+            <a href="mailto:stay@sylvanhotel.com" class="contact__detail-value">stay@sylvanhotel.com</a>
+          </div>
+          <div class="contact__detail">
+            <span class="contact__detail-label">Hours</span>
+            <span class="contact__detail-value">Daily, 8:00 – 20:00</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact__form" novalidate aria-label="Enquiry form">
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-input" type="text" id="name" name="name" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="checkin">Arrival</label>
+            <input class="form-input" type="date" id="checkin" name="checkin">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="checkout">Departure</label>
+            <input class="form-input" type="date" id="checkout" name="checkout">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="room-type">Room Preference</label>
+          <select class="form-input form-select" id="room-type" name="room-type">
+            <option value="">No preference</option>
+            <option value="oak-moss">Oak &amp; Moss (Forest Room)</option>
+            <option value="canopy">Above the Understory (Canopy Suite)</option>
+            <option value="ridge">The Long View (Ridge Villa)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Anything else we should know</label>
+          <textarea class="form-input form-textarea" id="message" name="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Send Enquiry</button>
+        <p class="form-note">We will respond within one working day.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <span class="logo footer__logo">SYLVAN</span>
+        <p class="footer__address">
+          1923 Okumori Ridge, Hakone District<br>
+          Kanagawa Prefecture, Japan
+        </p>
+      </div>
+      <div class="footer__rule" aria-hidden="true"></div>
+      <div class="footer__bottom">
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <a href="#rooms">Rooms</a>
+          <a href="#experiences">Experiences</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="#">Privacy</a>
+        </nav>
+        <p class="footer__copy">&copy; 2026 SYLVAN. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

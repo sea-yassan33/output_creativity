@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   SYLVAN - 森林に抱かれた滞在
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&amp;family=Jost:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <!-- Sticky Header -->
+  <header id="site-header">
+   <div class="nav-content">
+    <div class="logo">
+     <h1>
+      SYLVAN
+     </h1>
+    </div>
+    <!-- Mobile Menu Toggle -->
+    <button aria-controls="main-navigation" aria-expanded="false" aria-label="ナビゲーションメニューを開く" class="menu-toggle">
+     ☢
+     <!-- Hamburger Icon Placeholder -->
+    </button>
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links" id="main-navigation" role="menu">
+     <ul>
+      <li>
+       <a href="#philosophy">
+        Philosophy
+       </a>
+      </li>
+      <li>
+       <a href="#rooms">
+        Rooms
+       </a>
+      </li>
+      <li>
+       <a href="#experiences">
+        Experiences
+       </a>
+      </li>
+      <li>
+       <a href="#testimonial">
+        Testimonial
+       </a>
+      </li>
+      <li>
+       <a href="#contact">
+        Contact
+       </a>
+      </li>
+     </ul>
+    </nav>
+    <!-- Booking CTA -->
+    <div>
+     <button class="btn btn-primary" onclick="document.getElementById('bookingForm').scrollIntoView({ behavior: 'smooth' });">
+      予約する
+     </button>
+    </div>
+   </div>
+  </header>
+  <!-- 1. HERO SECTION (Dappled Light) -->
+  <section id="hero">
+   <div class="dappled-light">
+    <!-- Layering the gradients for the wood sunlight effect -->
+    <div class="layer-3" style="--x: -10vw; --y: 20vh;">
+    </div>
+    <div class="layer-1" style="--x: 5vw; --y: 80vh;">
+    </div>
+    <div class="layer-2" style="--x: 70vw; --y: -10vh;">
+    </div>
+   </div>
+   <div class="hero-content reveal">
+    <h1>
+     森の深奥に、時間が溶ける場所。
+    </h1>
+    <p>
+     都会の喧騒を忘れさせる静寂と、自然が織りなす光の芸術があなたを包み込む滞在へ。
+    </p>
+    <button class="btn btn-primary" onclick="document.getElementById('rooms').scrollIntoView({ behavior: 'smooth' });">
+     空室を確認する
+    </button>
+   </div>
+  </section>
+  <!-- 2. PHILOSOPHY (About Section) -->
+  <section class="reveal" id="philosophy">
+   <div class="container">
+    <h2 class="reveal reveal-stagger">
+     SYLVANの精神
+    </h2>
+    <!-- Quote Container -->
+    <figure class="quote-container reveal reveal-stagger" style="transition-delay: 0.15s;">
+     <figcaption>
+      「私たちが提供するのは、単なる宿泊施設ではありません。それは、あなた自身と深く対話するための、特別な時間そのものです。」
+     </figcaption>
+    </figure>
+    <!-- Stats Grid -->
+    <div class="stats-grid reveal reveal-stagger" style="transition-delay: 0.3s;">
+     <div class="stat-card">
+      <span class="stat-number">
+       12
+      </span>
+      <span class="stat-label">
+       ヴィラ棟の数
+      </span>
+     </div>
+     <div class="stat-card">
+      <span class="stat-number">
+       7
+      </span>
+      <span class="stat-label">
+       季節限定体験プログラム
+      </span>
+     </div>
+     <div class="stat-card">
+      <span class="stat-number">
+       &amp; 95%+
+      </span>
+      <span class="stat-label">
+       お客様の満足度
+      </span>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- 3. ROOMS (Room Grid) -->
+  <section class="reveal" id="rooms">
+   <div class="container">
+    <h2 class="reveal reveal-stagger">
+     客室
+    </h2>
+    <p style="text-align: center; margin-bottom: 50px;">
+     森の様々な階層から、あなただけの視点と安らぎを見つけてください。
+    </p>
+    <!-- Room Grid Structure -->
+    <div class="room-grid reveal reveal-stagger">
+     <!-- Card 1: Oak & Moss (Forest Room) - Standard Width -->
+     <div class="room-card-wrapper col-full room-card reveal reveal-stagger" style="transition-delay: 0.1s;">
+      <div class="room-header">
+       <h3>
+        Oak &amp; Moss
+       </h3>
+       <p style="color: var(--color-warm-stone); font-size: 0.95rem; margin-bottom: 20px;">
+        静寂に包まれた、苔むす森の部屋。
+       </p>
+      </div>
+      <!-- Emblem Implementation -->
+      <div class="emblem">
+       <div class="emblem-forest">
+       </div>
+      </div>
+      <div class="room-body">
+       <p style="margin-bottom: 20px;">
+        原生林の静けさを肌身離さず感じられる、落ち着いた雰囲気の客室です。深い緑に包まれた空間で、心と体を休めてください。
+       </p>
+       <button class="btn btn-primary" onclick="alert('Oak &amp; Mossのご予約を承ります。');">
+        詳細を見る
+       </button>
+      </div>
+      <!-- Details -->
+      <div class="room-detail reveal reveal-stagger" style="transition-delay: 0.2s;">
+       <strong>
+        設備：
+       </strong>
+       バス・トイレ別、ミニキッチン完備、プライベートデッキ（広さ目安：15㎡）
+      </div>
+     </div>
+     <!-- Card 2: Above the Understory (Canopy Suite) - Feature Width -->
+     <div class="room-card-wrapper col-feature room-card reveal reveal-stagger" style="transition-delay: 0.3s;">
+      <div class="room-header">
+       <h3>
+        Above the Understory
+       </h3>
+       <p style="color: var(--color-aged-brass); font-size: 1rem; margin-bottom: 20px;">
+        樹冠を望む、特別なスイート。
+       </p>
+      </div>
+      <!-- Emblem Implementation -->
+      <div class="emblem">
+       <div class="emblem-canopy">
+       </div>
+      </div>
+      <div class="room-body">
+       <p style="margin-bottom: 20px;">
+        唯一、木々の視点から景色を眺められる贅沢なスイート。天然木の素材と広大な窓が織りなす、光あふれる空間です。
+       </p>
+       <button class="btn btn-primary" onclick="alert('Above the Understoryのご予約を承ります。');">
+        特別な体験を知る
+       </button>
+      </div>
+      <!-- Details -->
+      <div class="room-detail reveal reveal-stagger" style="transition-delay: 0.2s;">
+       <strong>
+        設備：
+       </strong>
+       専用バルコニー、モーニングコート、プライベートダイニングエリア（広さ目安：45㎡）
+      </div>
+     </div>
+     <!-- Card 3: The Long View (Ridge Villa) - Standard Width -->
+     <div class="room-card-wrapper col-full room-card reveal reveal-stagger" style="transition-delay: 0.4s;">
+      <div class="room-header">
+       <h3>
+        The Long View
+       </h3>
+       <p style="color: var(--color-forest-moss); font-size: 0.95rem; margin-bottom: 20px;">
+        絶景と一体化する、独立したヴィラ。
+       </p>
+      </div>
+      <!-- Emblem Implementation -->
+      <div class="emblem">
+       <div class="emblem-ridge">
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+       </div>
+      </div>
+      <div class="room-body">
+       <p style="margin-bottom: 20px;">
+        山脈の稜線に沿って佇む、最も静かで開放的な存在。外界から完全に隔離された、究極のリトリート空間です。
+       </p>
+       <button class="btn btn-primary" onclick="alert('The Long Viewのご予約を承ります。');">
+        ヴィラプランを見る
+       </button>
+      </div>
+      <!-- Details -->
+      <div class="room-detail reveal reveal-stagger" style="transition-delay: 0.2s;">
+       <strong>
+        設備：
+       </strong>
+       独立プール、専用式典、サービス付きダイニング（広さ目安：100㎡）
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- 4. EXPERIENCES (Experiences Section) -->
+  <section class="reveal" id="experiences">
+   <div class="container reveal reveal-stagger">
+    <h2>
+     特別な森の体験
+    </h2>
+    <p style="max-width: 700px; margin: 0 auto 60px;">
+     SYLVANでは、自然との調和を深く感じていただくためのプログラムをご用意しています。
+    </p>
+    <!-- Experience 1: Dawn Visual (Dawn) -->
+    <div class="experience-grid">
+     <div class="exp-item reveal reveal-stagger" style="transition-delay: 0.1s;">
+      <div class="exp-visual">
+       <div class="emblem-dawn">
+       </div>
+      </div>
+      <div class="exp-content">
+       <h3>
+        夜明けの森林浴
+       </h3>
+       <p>
+        まだ夜明け前の静寂の中、新鮮な空気と光を全身で受け止めます。五感を研ぎ澄ませることで、本来の自分と対話する時間を提供します。
+       </p>
+      </div>
+     </div>
+     <!-- Experience 2: Table Visual (Dining) -->
+     <div class="exp-item reverse reveal reveal-stagger" style="transition-delay: 0.3s;">
+      <div class="exp-content">
+       <h3>
+        山菜×焚き火ディナー
+       </h3>
+       <p>
+        熟練の料理人が、その土地で採れた旬の山菜と薪火を使い、五感で味わう特別な食体験。自然の恵みを最大限に引き出した献立をお楽しみください。
+       </p>
+      </div>
+      <div class="exp-visual">
+       <div class="emblem-table">
+       </div>
+      </div>
+     </div>
+     <!-- Experience 3: Water Visual (Spa) -->
+     <div class="exp-item reveal reveal-stagger" style="transition-delay: 0.5s;">
+      <div class="exp-visual">
+       <div class="emblem-water">
+       </div>
+      </div>
+      <div class="exp-content">
+       <h3>
+        湧き水プール＆サウナ
+       </h3>
+       <p>
+        森の奥深くにある天然の湧き水を利用したインフィニティプールと、心身を芯から温める伝統的なサウナ。滞在の疲れを洗い流します。
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- 5. TESTIMONIAL (Testimonial) -->
+  <section class="reveal reveal-stagger" id="testimonial">
+   <div class="container">
+    <h2>
+     お客様の声
+    </h2>
+    <article class="review-card reveal">
+     <p>
+      "都会の喧騒を忘れて、ただ森と自分だけに向き合う時間を持てた。自然がアートとして目の前に現れる体験は忘れられません。"
+     </p>
+     <div class="reviewer-info">
+      <strong>
+       佐藤 恵美 (30代 / 東京)
+      </strong>
+      <span>
+       滞在日：2024年5月
+      </span>
+     </div>
+    </article>
+   </div>
+  </section>
+  <!-- 6. CONTACT / BOOKING -->
+  <section class="reveal reveal-stagger" id="contact">
+   <div class="container contact-grid">
+    <!-- Left Side: Information -->
+    <div>
+     <h2 style="margin-bottom: 30px;">
+      SYLVANへのお問い合わせ
+     </h2>
+     <p style="font-size: 1.1em; margin-bottom: 25px;">
+      ご予約、特別なイベントのご相談など、お気軽にお問い合わせください。
+     </p>
+     <div class="contact-info" style="margin-top: 40px;">
+      <h4>
+       施設情報
+      </h4>
+      <address style="font-style: normal; line-height: 2.2;">
+       〒153-XXXX 東京都奥深くの森の中
+       <br/>
+       SYLVAN Hotel (シルヴァン ホテル)
+       <br/>
+       TEL: +81-3-xxxx-xxxx / Email: info@sylvanhotel.jp
+      </address>
+     </div>
+     <div class="contact-info" style="margin-top: 40px;">
+      <h4>
+       アクセス
+      </h4>
+      <p>
+       最寄りの駅から送迎バスをご利用いただくか、車で約1時間の秘境に位置します。自然への深い敬意を払った立地です。
+      </p>
+     </div>
+    </div>
+    <!-- Right Side: Form -->
+    <div class="booking-form">
+     <h3 style="border-bottom: 1px solid var(--color-aged-brass); padding-bottom: 10px; margin-bottom: 25px;">
+      ご予約・お問い合わせフォーム
+     </h3>
+     <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+      <div class="form-group">
+       <label for="name">
+        お名前 *
+       </label>
+       <input aria-required="true" id="name" name="name" required="" type="text"/>
+      </div>
+      <div class="form-group">
+       <label for="email">
+        メールアドレス *
+       </label>
+       <input aria-required="true" id="email" name="email" required="" type="email"/>
+      </div>
+      <div class="form-group">
+       <label for="stay_date">
+        ご希望のご滞在日 *
+       </label>
+       <input aria-required="true" id="stay_date" name="stay_date" required="" type="date"/>
+      </div>
+      <div class="form-group">
+       <label for="inquiry">
+        お問い合わせ内容 / ご要望
+       </label>
+       <textarea id="inquiry" name="inquiry" rows="5"></textarea>
+      </div>
+      <!-- This button will be modified by JS -->
+      <button class="btn btn-primary" type="submit">
+       予約を申し込む
+      </button>
+     </form>
+    </div>
+   </div>
+  </section>
+  <!-- FOOTER -->
+  <footer>
+   <div class="footer-content reveal reveal-stagger">
+    <div class="footer-col">
+     <h4>
+      SYLVAN
+     </h4>
+     <p style="color: var(--color-linen); margin-top: 10px;">
+      森の奥深く、静寂が支配する場所。心と身体をリセットし、本来の自分と向き合うための時間を提供します。
+     </p>
+    </div>
+    <div class="footer-col">
+     <h4>
+      ナビゲーション
+     </h4>
+     <ul>
+      <li>
+       <a href="#philosophy" style="color: var(--color-linen); display: block; margin-bottom: 8px;">
+        哲学
+       </a>
+      </li>
+      <li>
+       <a href="#rooms" style="color: var(--color-linen); display: block; margin-bottom: 8px;">
+        客室
+       </a>
+      </li>
+      <li>
+       <a href="#experiences" style="color: var(--color-linen); display: block; margin-bottom: 8px;">
+        体験プログラム
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="footer-col">
+     <h4>
+      連絡先
+     </h4>
+     <ul>
+      <li>
+       住所：東京都奥深くの森の中
+      </li>
+      <li>
+       電話：+81-3-xxxx-xxxx
+      </li>
+      <li>
+       メール：info@sylvanhotel.jp
+      </li>
+     </ul>
+    </div>
+    <div class="footer-col">
+     <h4>
+      予約窓口
+     </h4>
+     <p style="color: var(--color-linen); font-size: 0.9rem;">
+      特別なご要望や団体様のご依頼は、直接お問い合わせください。
+     </p>
+    </div>
+   </div>
+   <div class="copyright reveal reveal-stagger">
+    © 2024 SYLVAN Hotel. All Rights Reserved.
+   </div>
+  </footer>
+  <script src="app.js">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,281 @@
+/* ------------------------------------------ */
+/* 1. DESIGN TOKENS & VARIABLES (Palette/Type)   */
+/* ------------------------------------------ */
+
+:root {
+    /* Colors: Earthy, Muted, Sophisticated */
+    --color-linen: #FAF8F5;
+    /* Background base: Warm off-white */
+    --color-charcoal: #1F2D26;
+    /* Primary text: Deep, soft black */
+    --color-deep-green: #3A4E3B;
+    /* Accent 1: Forest depth, nature */
+    --color-taupe: #7B6C59;
+    /* Accent 2: Wood/Stone, grounding */
+    --color-light-cream: #EDEAE0;
+    /* Subtle divider/secondary background */
+
+    /* Typography Stack: Serif for Luxury (Display), Sans for Clarity (Body) */
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* Spacing & Layout Variables */
+    --spacing-unit: 1.5rem;
+}
+
+/* Global Reset and Base Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-linen);
+    color: var(--color-charcoal);
+    line-height: 1.7;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling due to layout */
+}
+
+/* Typography Styling */
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    color: var(--color-charcoal);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+/* Display Headings (Hero/Title) */
+h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    /* Fluid sizing for impact */
+    line-height: 1.1;
+    margin-bottom: var(--spacing-unit);
+}
+
+/* Section Headings (Philosophy) */
+h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-unit);
+    color: var(--color-deep-green);
+}
+
+/* Body Text */
+p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Utility/Small text (Captions, data) */
+.text-caption {
+    font-size: 0.95rem;
+    color: var(--color-taupe);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+/* Container & Layout Structure */
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+/* ------------------------------------------ */
+/* 2. COMPONENTS & ELEMENTS                     */
+/* ------------------------------------------ */
+
+/* Navigation */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(250, 248, 245, 0.9);
+    /* Slightly transparent over the linen base */
+    backdrop-filter: blur(5px);
+    padding: 1rem 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--color-charcoal);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--color-charcoal);
+    font-weight: 500;
+    transition: color 0.2s;
+    padding: 0.5rem 0;
+}
+
+nav a:hover {
+    color: var(--color-deep-green);
+}
+
+/* Hero Section (The Thesis) */
+#hero {
+    text-align: center;
+    padding: 8rem 0 6rem;
+    background-color: var(--color-linen);
+    border-bottom: 1px solid rgba(152, 144, 140, 0.1);
+    /* Subtle stone division */
+}
+
+#hero p {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    font-size: 1.4rem;
+    color: var(--color-taupe);
+}
+
+
+/* Manifesto Section (The Signature Element) */
+#manifesto {
+    background-color: var(--color-light-cream);
+    padding: 8rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.manifesto-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 4rem auto;
+}
+
+.man-block {
+    padding: var(--spacing-unit) 0;
+}
+
+.man-block p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Services / Philosophy Grid */
+#philosophy {
+    background-color: var(--color-linen);
+    padding: 6rem 0;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.service-card {
+    padding: var(--spacing-unit) 0;
+    border-bottom: 1px solid rgba(58, 78, 59, 0.1);
+    /* Subtle green divider */
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+/* CTA Button Styling */
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid var(--color-deep-green);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button.primary {
+    background-color: var(--color-deep-green);
+    color: var(--color-linen);
+    border-color: var(--color-deep-green);
+}
+
+.cta-button.primary:hover {
+    background-color: var(--color-taupe);
+    border-color: var(--color-taupe);
+    transform: scale(1.02);
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-deep-green);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 3rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+
+    /* Manifesto changes from 3 columns to 2 */
+    .manifesto-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Full mobile stacking */
+    nav ul {
+        gap: 15px;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+    }
+
+    #hero p {
+        font-size: 1.2rem;
+    }
+
+    .manifesto-grid {
+        grid-template-columns: 1fr;
+        /* Stack all blocks */
+        gap: 30px;
+    }
+
+    .container,
+    #philosophy {
+        padding: 4rem 5%;
+    }
+}
