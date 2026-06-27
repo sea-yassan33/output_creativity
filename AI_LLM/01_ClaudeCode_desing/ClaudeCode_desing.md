@@ -90,7 +90,7 @@ claude
 
 |model|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|
 |:----|:----|:----|:----|:----|
-|Sonnet 4.6|9|19757|30454|271836|
+|Sonnet 4.6|9|19,757|30,454|271,836|
 
 |コスト||
 |:----|:----|
