@@ -1,0 +1,88 @@
+
+        :root {
+            --color-emerald: #0F1E16;
+            --color-moss: #1C3326;
+            --color-cream: #F5F2EB;
+            --color-sand: #EBE5D8;
+            --color-gold: #C5A473;
+            --color-charcoal: #2A2D2B;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Noto Serif JP', serif;
+            background-color: var(--color-cream);
+            color: var(--color-charcoal);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .font-serif-lux {
+            font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-gold);
+            border-radius: 3px;
+        }
+
+        /* Animated elegant gold line */
+        .gold-line {
+            position: relative;
+        }
+        .gold-line::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-gold);
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .gold-line:hover::after {
+            width: 100%;
+        }
+
+        /* Parallax & subtle glow effects */
+        .ambient-glow {
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* Golden luxury border transition */
+        .room-card {
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .room-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-gold);
+        }
+
+        /* Custom luxury cursor (Desktop) */
+        #custom-cursor {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--color-gold);
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+            display: none;
+        }
+        @media (min-width: 1024px) {
+            #custom-cursor {
+                display: block;
+            }
+        }
+    

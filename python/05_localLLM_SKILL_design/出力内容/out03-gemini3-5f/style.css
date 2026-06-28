@@ -1,0 +1,1289 @@
+
+    /* -------------------------------------------------------------------------
+       1. DESIGN TOKENS & VARIABLES
+    ------------------------------------------------------------------------- */
+    :root {
+      /* Colors */
+      --charcoal-earth: #1C1A17;
+      --linen: #E8DCC8;
+      --aged-brass: #C9A96E;
+      --forest-moss: #4A5240;
+      --parchment: #F5F0E8;
+      --warm-stone-muted: #7B6E5D;
+      --warm-stone-light: #A89880;
+      
+      /* Typography */
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      
+      /* Structural System */
+      --transition-base: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      --transition-slow: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+      --header-height: 90px;
+    }
+
+    /* -------------------------------------------------------------------------
+       2. RESET & BASE STYLES
+    ------------------------------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--charcoal-earth);
+      color: var(--linen);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-serif {
+      font-family: var(--font-display);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition-base);
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      background: none;
+      border: none;
+      color: inherit;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* Accessibility */
+    *:focus-visible {
+      outline: 2px solid var(--aged-brass);
+      outline-offset: 4px;
+    }
+
+    /* -------------------------------------------------------------------------
+       3. REVEAL SCROLL ANIMATIONS (IntersectionObserver)
+    ------------------------------------------------------------------------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: var(--transition-slow);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger effect delay styles */
+    .reveal-stagger > *:nth-child(1) { transition-delay: 0.1s; }
+    .reveal-stagger > *:nth-child(2) { transition-delay: 0.25s; }
+    .reveal-stagger > *:nth-child(3) { transition-delay: 0.4s; }
+    .reveal-stagger > *:nth-child(4) { transition-delay: 0.55s; }
+
+    /* -------------------------------------------------------------------------
+       4. SIGNATURE ELEMENT: "KOMOREBI" CANVAS ANIMATION
+    ------------------------------------------------------------------------- */
+    .komorebi-container {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* The glowing layers */
+    .komorebi-layer {
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      top: -25%;
+      left: -25%;
+      filter: blur(80px);
+      opacity: 0.45;
+    }
+
+    /* Layer 1: Brass & Moss tones moving dynamically */
+    .k-layer-1 {
+      background: radial-gradient(circle at 30% 20%, rgba(201, 169, 110, 0.22) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(74, 82, 64, 0.3) 0%, transparent 60%);
+      animation: shiftKomorebiOne 18s ease-in-out infinite alternate;
+    }
+
+    /* Layer 2: Deeper Moss tone shifting perspective */
+    .k-layer-2 {
+      background: radial-gradient(circle at 70% 30%, rgba(74, 82, 64, 0.4) 0%, transparent 55%),
+                  radial-gradient(circle at 20% 80%, rgba(201, 169, 110, 0.15) 0%, transparent 50%);
+      animation: shiftKomorebiTwo 24s ease-in-out infinite alternate;
+    }
+
+    /* Layer 3: Dynamic overlay mimicking direct shafts of fine linen sunlight */
+    .k-layer-3 {
+      background: radial-gradient(circle at 50% 50%, rgba(232, 220, 200, 0.15) 0%, transparent 40%),
+                  radial-gradient(circle at 10% 10%, rgba(201, 169, 110, 0.1) 0%, transparent 30%);
+      mix-blend-mode: overlay;
+      animation: shiftKomorebiThree 30s ease-in-out infinite alternate;
+    }
+
+    /* Shadow Mask for dramatic deep forest look */
+    .komorebi-mask {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(28,26,23,0.3) 0%, rgba(28,26,23,0.8) 100%);
+      z-index: 2;
+    }
+
+    @keyframes shiftKomorebiOne {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      100% { transform: translate(5%, 8%) scale(1.1) rotate(5deg); }
+    }
+
+    @keyframes shiftKomorebiTwo {
+      0% { transform: translate(0, 0) scale(1.1) rotate(0deg); }
+      100% { transform: translate(-6%, -4%) scale(0.9) rotate(-8deg); }
+    }
+
+    @keyframes shiftKomorebiThree {
+      0% { transform: translate(-3%, 5%) scale(1) rotate(2deg); opacity: 0.3; }
+      50% { opacity: 0.6; }
+      100% { transform: translate(4%, -5%) scale(1.05) rotate(-2deg); opacity: 0.3; }
+    }
+
+    /* Respect reduced motion specifications */
+    @media (prefers-reduced-motion: reduce) {
+      .komorebi-layer {
+        animation: none !important;
+        opacity: 0.3;
+      }
+      .reveal {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+
+    /* -------------------------------------------------------------------------
+       5. HEADER STYLES
+    ------------------------------------------------------------------------- */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4rem;
+      transition: var(--transition-base);
+    }
+
+    /* Scrolling down header transition */
+    .site-header.scrolled {
+      height: 70px;
+      background-color: rgba(28, 26, 23, 0.95);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 0 3rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1;
+    }
+
+    .brand-logo .logo-main {
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      color: var(--linen);
+      transition: var(--transition-base);
+    }
+
+    .brand-logo .logo-sub {
+      font-size: 0.65rem;
+      font-family: var(--font-body);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--aged-brass);
+      margin-top: 2px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .nav-link {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--linen);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--aged-brass);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .nav-link:hover {
+      color: var(--aged-brass);
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .header-cta {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      border: 1px solid var(--aged-brass);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--aged-brass);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transition: var(--transition-base);
+    }
+
+    .header-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--aged-brass);
+      z-index: -1;
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .header-cta:hover {
+      color: var(--charcoal-earth);
+    }
+
+    .header-cta:hover::before {
+      transform: scaleY(1);
+    }
+
+    /* Mobile Menu Toggle Button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 18px;
+      cursor: pointer;
+      z-index: 110;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: var(--linen);
+      transition: var(--transition-base);
+    }
+
+    /* -------------------------------------------------------------------------
+       6. HERO SECTION
+    ------------------------------------------------------------------------- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      background-color: var(--charcoal-earth);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 2rem;
+      z-index: 10;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .hero-content.hero-loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      color: var(--aged-brass);
+      margin-bottom: 2rem;
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      line-height: 1.15;
+      color: var(--linen);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-title span {
+      display: block;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--linen);
+      opacity: 0.9;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+      color: var(--linen);
+      opacity: 0.8;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 1.2rem 3rem;
+      background-color: var(--aged-brass);
+      color: var(--charcoal-earth);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      transition: var(--transition-base);
+    }
+
+    .hero-btn:hover {
+      background-color: var(--linen);
+      transform: translateY(-2px);
+    }
+
+    /* Scroll Down Indicator */
+    .scroll-down-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--linen);
+      opacity: 0.6;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    .scroll-down-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, var(--linen) 0%, transparent 100%);
+      animation: pulseScrollLine 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseScrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      50.1% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* -------------------------------------------------------------------------
+       7. PHILOSOPHY SECTION (#about)
+    ------------------------------------------------------------------------- */
+    .philosophy {
+      background-color: var(--charcoal-earth);
+      color: var(--linen);
+      padding: 10rem 4rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .philosophy-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .quote-block {
+      text-align: center;
+      margin-bottom: 7rem;
+    }
+
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      line-height: 1.5;
+      font-style: italic;
+      color: var(--linen);
+      margin-bottom: 2rem;
+    }
+
+    .quote-author {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--aged-brass);
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .philosophy-lead {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      line-height: 1.35;
+      color: var(--linen);
+    }
+
+    .philosophy-body {
+      color: var(--linen);
+      opacity: 0.75;
+      font-weight: 300;
+    }
+
+    .philosophy-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Philosophy Stats */
+    .stats-container {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      border-top: 1px solid rgba(232, 220, 200, 0.15);
+      padding-top: 5rem;
+      margin-top: 4rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--aged-brass);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--warm-stone-light);
+    }
+
+    /* -------------------------------------------------------------------------
+       8. ROOMS SECTION (#rooms)
+    ------------------------------------------------------------------------- */
+    .rooms {
+      background-color: var(--parchment);
+      color: var(--charcoal-earth);
+      padding: 10rem 4rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 6rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--warm-stone-muted);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      font-weight: 300;
+    }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      align-items: stretch;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .room-card {
+      background-color: rgba(28, 26, 23, 0.03);
+      border: 1px solid rgba(28, 26, 23, 0.08);
+      padding: 4rem 2.5rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      transition: var(--transition-base);
+    }
+
+    /* Featured room styling (Canopy Suite) */
+    .room-card.featured {
+      background-color: var(--charcoal-earth);
+      color: var(--linen);
+      border-color: var(--aged-brass);
+      transform: translateY(-20px);
+      box-shadow: 0 20px 40px rgba(28, 26, 23, 0.15);
+    }
+
+    .room-card.featured .room-meta {
+      color: var(--aged-brass);
+    }
+
+    .room-card.featured .room-title {
+      color: var(--linen);
+    }
+
+    .room-card.featured .room-desc {
+      color: var(--linen);
+      opacity: 0.8;
+    }
+
+    .room-meta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--warm-stone-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .room-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      color: var(--charcoal-earth);
+    }
+
+    .room-desc {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #555;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .room-features {
+      margin-top: auto;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding-top: 2rem;
+    }
+
+    .room-card.featured .room-features {
+      border-top-color: rgba(232, 220, 200, 0.15);
+    }
+
+    .room-price {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .room-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 1rem 0;
+      border: 1px solid var(--charcoal-earth);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      font-weight: 500;
+      transition: var(--transition-base);
+    }
+
+    .room-card:not(.featured) .room-btn:hover {
+      background-color: var(--charcoal-earth);
+      color: var(--parchment);
+    }
+
+    .room-card.featured .room-btn {
+      border-color: var(--aged-brass);
+      color: var(--charcoal-earth);
+      background-color: var(--aged-brass);
+    }
+
+    .room-card.featured .room-btn:hover {
+      background-color: var(--linen);
+      border-color: var(--linen);
+    }
+
+    /* -------------------------------------------------------------------------
+       9. EMBLEM SYSTEM (MANDATORY SPECIFICATION)
+    ------------------------------------------------------------------------- */
+    /* Oak & Moss (Forest Room) - 同心円 */
+    .emblem-forest {
+      width: 120px; height: 120px;
+      margin: 2rem auto;
+      position: relative;
+      border-radius: 50%;
+      border: 2px solid var(--aged-brass);
+      box-shadow: 0 0 0 12px rgba(201,169,110,0.1),
+                  0 0 0 24px rgba(201,169,110,0.06),
+                  0 0 0 36px rgba(201,169,110,0.03);
+    }
+
+    /* Above the Understory (Canopy Suite) - 半円アーク＋縦線 */
+    .emblem-canopy {
+      width: 120px; height: 60px;
+      margin: 2rem auto;
+      border-top: 2px solid var(--aged-brass);
+      border-left: 2px solid var(--aged-brass);
+      border-right: 2px solid var(--aged-brass);
+      border-radius: 60px 60px 0 0;
+      position: relative;
+    }
+    .emblem-canopy::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 50%;
+      width: 2px; height: 40px;
+      background: var(--aged-brass);
+      transform: translateX(-50%);
+    }
+
+    /* The Long View (Ridge Villa) - グラデーション横線3本 */
+    .emblem-ridge {
+      width: 120px;
+      margin: 4.5rem auto 2.5rem; /* adjusted to offset spacing */
+    }
+    .emblem-ridge span {
+      display: block;
+      height: 2px;
+      margin-bottom: 12px;
+      background: linear-gradient(
+        to right, transparent, var(--aged-brass), transparent
+      );
+    }
+
+    /* -------------------------------------------------------------------------
+       10. EXPERIENCES SECTION (#experiences)
+    ------------------------------------------------------------------------- */
+    .experiences {
+      background-color: var(--charcoal-earth);
+      color: var(--linen);
+      padding: 10rem 4rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .exp-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+      align-items: center;
+      margin-bottom: 10rem;
+    }
+
+    .exp-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .exp-item:nth-child(even) {
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .exp-item:nth-child(even) .exp-visual-box {
+      order: 2;
+    }
+
+    .exp-visual-box {
+      aspect-ratio: 1;
+      background-color: rgba(232, 220, 200, 0.02);
+      border: 1px solid rgba(232, 220, 200, 0.08);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .exp-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .exp-num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--aged-brass);
+      margin-bottom: 1rem;
+    }
+
+    .exp-title {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .exp-desc {
+      font-size: 1rem;
+      opacity: 0.75;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    /* -- Experience Visual Artifacts (Pure CSS illustrations) -- */
+
+    /* Dawn Visual: Sunrise arc */
+    .art-dawn {
+      width: 140px;
+      height: 140px;
+      position: relative;
+    }
+    .art-dawn-arc {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100px; height: 100px;
+      border: 1.5px solid var(--aged-brass);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      clip-path: inset(0 0 50% 0); /* Half circle arch */
+    }
+    .art-dawn-sun {
+      position: absolute;
+      top: 48%; left: 50%;
+      width: 12px; height: 12px;
+      background-color: var(--aged-brass);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .art-dawn-ray {
+      position: absolute;
+      bottom: 50%; left: 50%;
+      width: 1px; height: 40px;
+      background: linear-gradient(to top, var(--aged-brass), transparent);
+      transform-origin: bottom center;
+    }
+    .art-dawn-ray.r1 { transform: translateX(-50%) rotate(-45deg); }
+    .art-dawn-ray.r2 { transform: translateX(-50%) rotate(0deg); }
+    .art-dawn-ray.r3 { transform: translateX(-50%) rotate(45deg); }
+
+    /* Table Visual: Structural Long Table and Fire */
+    .art-table {
+      width: 140px;
+      height: 140px;
+      position: relative;
+    }
+    .art-table-line {
+      position: absolute;
+      width: 110px; height: 1.5px;
+      background-color: var(--aged-brass);
+      left: 15px;
+    }
+    .art-table-line.top { top: 50px; }
+    .art-table-line.bottom { top: 62px; opacity: 0.5; }
+    .art-table-pillar {
+      position: absolute;
+      width: 1.5px; height: 35px;
+      background-color: var(--aged-brass);
+      top: 50px;
+    }
+    .art-table-pillar.p1 { left: 40px; }
+    .art-table-pillar.p2 { left: 100px; }
+    .art-table-fire {
+      position: absolute;
+      width: 20px; height: 20px;
+      border: 1.5px solid var(--aged-brass);
+      border-radius: 50% 0 50% 50%;
+      transform: rotate(-45deg) translate(-50%, -50%);
+      top: 15px; left: 55px;
+    }
+
+    /* Water Visual: Rippling Ellipses */
+    .art-water {
+      width: 140px;
+      height: 140px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .art-water-ripple {
+      position: absolute;
+      border: 1.5px solid var(--aged-brass);
+      border-radius: 50%;
+      transform: rotateX(70deg);
+      opacity: 0;
+      animation: rippleEffect 4s infinite linear;
+    }
+    .art-water-ripple:nth-child(1) { animation-delay: 0s; }
+    .art-water-ripple:nth-child(2) { animation-delay: 1.3s; }
+    .art-water-ripple:nth-child(3) { animation-delay: 2.6s; }
+
+    @keyframes rippleEffect {
+      0% { width: 10px; height: 10px; opacity: 1; }
+      100% { width: 130px; height: 130px; opacity: 0; }
+    }
+
+    /* -------------------------------------------------------------------------
+       11. TESTIMONIAL SECTION
+    ------------------------------------------------------------------------- */
+    .testimonial {
+      background-color: var(--forest-moss);
+      color: var(--linen);
+      padding: 12rem 4rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .testimonial-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .testimonial-logo {
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 3.5rem;
+      color: var(--aged-brass);
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.4;
+      font-style: italic;
+      margin-bottom: 3.5rem;
+    }
+
+    .testimonial-author {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+    }
+
+    .testimonial-author span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--linen);
+      opacity: 0.6;
+      margin-top: 0.5rem;
+    }
+
+    /* -------------------------------------------------------------------------
+       12. CONTACT / BOOKING SECTION (#contact)
+    ------------------------------------------------------------------------- */
+    .contact {
+      background-color: var(--parchment);
+      color: var(--charcoal-earth);
+      padding: 10rem 4rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .contact-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-title {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    .contact-desc {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-bottom: 4rem;
+      font-weight: 300;
+    }
+
+    .contact-details {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .detail-item-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--warm-stone-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-item-value {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      line-height: 1.4;
+    }
+
+    /* Booking Form Styling */
+    .booking-form-wrapper {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(28, 26, 23, 0.08);
+      padding: 4rem 3.5rem;
+      box-shadow: 0 30px 60px rgba(28, 26, 23, 0.05);
+    }
+
+    .form-title {
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    .form-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.6rem;
+      color: var(--warm-stone-muted);
+      font-weight: 500;
+    }
+
+    .form-input, .form-select {
+      background-color: var(--parchment);
+      border: 1px solid transparent;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--charcoal-earth);
+      transition: var(--transition-base);
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--aged-brass);
+      outline: none;
+      background-color: #FFFFFF;
+    }
+
+    .form-submit-btn {
+      grid-column: span 2;
+      background-color: var(--charcoal-earth);
+      color: var(--linen);
+      padding: 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      cursor: pointer;
+      transition: var(--transition-base);
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .form-submit-btn:hover {
+      background-color: var(--aged-brass);
+      color: var(--charcoal-earth);
+    }
+
+    .form-submit-btn:disabled {
+      background-color: var(--warm-stone-light);
+      cursor: not-allowed;
+    }
+
+    /* -------------------------------------------------------------------------
+       13. SITE FOOTER
+    ------------------------------------------------------------------------- */
+    .site-footer {
+      background-color: var(--charcoal-earth);
+      color: var(--linen);
+      border-top: 1px solid rgba(232, 220, 200, 0.1);
+      padding: 6rem 4rem 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-grid {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .footer-brand .footer-logo {
+      font-size: 2.2rem;
+      letter-spacing: 0.2em;
+      color: var(--linen);
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand .footer-tagline {
+      font-size: 0.85rem;
+      opacity: 0.5;
+      letter-spacing: 0.1em;
+    }
+
+    .footer-nav-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--aged-brass);
+      margin-bottom: 1.8rem;
+    }
+
+    .footer-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer-nav-link {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .footer-nav-link:hover {
+      opacity: 1;
+      color: var(--aged-brass);
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(232, 220, 200, 0.06);
+      padding-top: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--warm-stone-light);
+    }
+
+    /* -------------------------------------------------------------------------
+       14. RESPONSIVE DESIGN (<= 900px, <= 640px)
+    ------------------------------------------------------------------------- */
+    @media (max-width: 900px) {
+      .site-header {
+        padding: 0 2rem;
+      }
+      .site-header.scrolled {
+        padding: 0 2rem;
+      }
+
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+
+      .stats-container {
+        grid-column: span 1;
+      }
+
+      .rooms-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .room-card {
+        padding: 3rem 1.5rem 2.5rem;
+      }
+
+      .exp-item {
+        grid-template-columns: 1fr !important;
+        gap: 3rem;
+      }
+
+      .exp-visual-box {
+        order: -1 !important;
+        aspect-ratio: 16/9;
+      }
+
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      /* Mobile Navigation Drawer Activation */
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--charcoal-earth);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        transition: right 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 105;
+      }
+
+      /* When menu is active */
+      .nav-menu.active {
+        right: 0;
+      }
+
+      .site-header.menu-open .menu-toggle span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+      }
+      .site-header.menu-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      .site-header.menu-open .menu-toggle span:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+      }
+
+      .header-cta {
+        display: none; /* inside header, focus on drawer */
+      }
+
+      .hero {
+        padding: 0 1rem;
+      }
+
+      .philosophy {
+        padding: 6rem 1.5rem;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .rooms {
+        padding: 6rem 1.5rem;
+      }
+
+      .rooms-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .room-card.featured {
+        transform: translateY(0);
+      }
+
+      .experiences {
+        padding: 6rem 1.5rem;
+      }
+
+      .testimonial {
+        padding: 7rem 1.5rem;
+      }
+
+      .contact {
+        padding: 6rem 1.5rem;
+      }
+
+      .booking-form-wrapper {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full-width {
+        grid-column: span 1;
+      }
+
+      .form-submit-btn {
+        grid-column: span 1;
+      }
+
+      .site-footer {
+        padding: 5rem 1.5rem 2.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+  

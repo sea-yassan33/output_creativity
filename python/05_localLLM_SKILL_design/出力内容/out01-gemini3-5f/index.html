@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   森泉 SEN | Forest &amp; Spring Sanctuary
+  </title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <!-- Google Fonts: Cormorant Garamond & Noto Serif JP for ultimate elegance -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&amp;family=Noto+Serif+JP:wght@200;300;400;600&amp;family=Montserrat:wght@200;300;400&amp;display=swap" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body class="selection:bg-[#C5A473] selection:text-white">
+  <!-- Custom Cursor -->
+  <div id="custom-cursor">
+  </div>
+  <!-- Navigation Header -->
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 px-6 lg:px-16 py-6" id="main-header">
+   <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <!-- Logo Symbol & Text -->
+    <a class="flex items-center gap-3 group" href="#">
+     <div class="relative w-10 h-10 flex items-center justify-center">
+      <!-- Elegant Abstract Crest SVG -->
+      <svg class="absolute w-full h-full text-[#C5A473] transition-transform duration-700 group-hover:rotate-180" fill="none" viewbox="0 0 100 100">
+       <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-dasharray="2 2" stroke-width="1">
+       </circle>
+       <path d="M50 15 C50 15, 65 35, 65 50 C65 65, 50 85, 50 85 C50 85, 35 65, 35 50 C35 35, 50 15, 50 15 Z" stroke="currentColor" stroke-width="1.5">
+       </path>
+       <path d="M15 50 C15 50, 35 65, 50 65 C65 65, 85 50, 85 50 C85 50, 65 35, 50 35 C35 35, 15 50, 15 50 Z" stroke="currentColor" stroke-width="1">
+       </path>
+      </svg>
+      <span class="font-serif-lux text-xs tracking-[0.2em] text-[#C5A473] mt-[2px]">
+       森
+      </span>
+     </div>
+     <div class="flex flex-col">
+      <span class="font-serif-lux text-lg tracking-[0.3em] font-light text-[#E5DDCB] transition-colors duration-300" id="header-brand">
+       森泉
+      </span>
+      <span class="text-[8px] tracking-[0.4em] uppercase text-gray-400 font-light">
+       S E N
+      </span>
+     </div>
+    </a>
+    <!-- Desktop Nav Menu -->
+    <nav class="hidden lg:flex items-center gap-12 text-xs tracking-[0.25em] text-[#E5DDCB] transition-colors duration-300" id="header-nav">
+     <a class="gold-line hover:text-[#C5A473] transition-colors" href="#concept">
+      CONCEPT
+     </a>
+     <a class="gold-line hover:text-[#C5A473] transition-colors" href="#villas">
+      VILLAS &amp; SUITES
+     </a>
+     <a class="gold-line hover:text-[#C5A473] transition-colors" href="#experience">
+      EXPERIENCE
+     </a>
+     <a class="gold-line hover:text-[#C5A473] transition-colors" href="#access">
+      ACCESS
+     </a>
+    </nav>
+    <!-- CTA Reserve Button -->
+    <div class="flex items-center gap-4">
+     <a class="relative group overflow-hidden border border-[#C5A473] px-6 py-2.5 text-[10px] tracking-[0.3em] text-[#C5A473] hover:text-[#0F1E16] duration-500" href="#reserve">
+      <span class="absolute inset-0 bg-[#C5A473] scale-x-0 origin-right transition-transform duration-500 group-hover:scale-x-100 group-hover:origin-left">
+      </span>
+      <span class="relative z-10">
+       ONLINE RESERVE
+      </span>
+     </a>
+     <!-- Mobile Menu Button -->
+     <button aria-label="Menu" class="lg:hidden text-[#C5A473]" id="mobile-menu-btn">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+       <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+       </path>
+      </svg>
+     </button>
+    </div>
+   </div>
+  </header>
+  <!-- Mobile Navigation Overlay -->
+  <div class="fixed inset-0 bg-[#0F1E16] z-40 flex flex-col justify-center items-center gap-8 text-center opacity-0 pointer-events-none transition-all duration-500" id="mobile-menu">
+   <nav class="flex flex-col gap-6 text-lg tracking-[0.25em] text-[#F5F2EB] font-serif-lux">
+    <a class="mobile-nav-link" href="#concept">
+     CONCEPT / 思想
+    </a>
+    <a class="mobile-nav-link" href="#villas">
+     VILLAS / 庵・客室
+    </a>
+    <a class="mobile-nav-link" href="#experience">
+     EXPERIENCE / 過ごし方
+    </a>
+    <a class="mobile-nav-link" href="#access">
+     ACCESS / 地理
+    </a>
+   </nav>
+   <button class="mt-8 text-xs tracking-widest text-[#C5A473] border-b border-[#C5A473] pb-1" id="close-mobile-menu">
+    CLOSE
+   </button>
+  </div>
+  <!-- Hero Section (Generative Abstract Forest Landscape via Canvas) -->
+  <section class="relative h-screen bg-[#0F1E16] text-[#F5F2EB] overflow-hidden flex items-center justify-center">
+   <!-- Generative Forest & Stream Canvas Background -->
+   <canvas class="absolute inset-0 w-full h-full opacity-60" id="ambient-canvas">
+   </canvas>
+   <!-- Gradient Overlay to ease reading -->
+   <div class="absolute inset-0 bg-gradient-to-b from-[#0F1E16]/40 via-transparent to-[#0F1E16]">
+   </div>
+   <!-- Ambient Glow Circles -->
+   <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#C5A473] rounded-full ambient-glow">
+   </div>
+   <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#1C3326] rounded-full ambient-glow">
+   </div>
+   <!-- Hero Content -->
+   <div class="relative z-10 text-center px-6 max-w-4xl mx-auto mt-16">
+    <!-- Minimal Gold Crest -->
+    <div class="mb-8 flex justify-center opacity-0 animate-[fadeIn_1.5s_ease-out_forwards]">
+     <svg class="w-12 h-12 text-[#C5A473]" fill="none" viewbox="0 0 100 100">
+      <path d="M50 10 Q50 45 15 50 Q50 55 50 90 Q50 55 85 50 Q50 45 50 10 Z" stroke="currentColor" stroke-width="1">
+      </path>
+      <circle cx="50" cy="50" fill="none" r="10" stroke="currentColor" stroke-width="1">
+      </circle>
+     </svg>
+    </div>
+    <!-- Main Title & Subtitle -->
+    <h2 class="text-xs lg:text-sm tracking-[0.5em] text-[#C5A473] uppercase mb-4 font-light opacity-0 animate-[fadeIn_1.5s_ease-out_0.3s_forwards]">
+     Hakone Deep Forest Sanctuary
+    </h2>
+    <h1 class="font-serif-lux text-3xl md:text-5xl lg:text-6xl font-light tracking-[0.3em] leading-relaxed mb-8 opacity-0 animate-[fadeIn_1.5s_ease-out_0.6s_forwards]">
+     ただ、森と、泉と、私と。
+     <br/>
+     <span class="text-xl md:text-2xl tracking-[0.15em] font-sans font-extralight block mt-4 text-[#E5DDCB]">
+      Where Silence Whispers through the Leaves.
+     </span>
+    </h1>
+    <!-- Interactive Climate Indicator Widget (Elegant Rich Detail) -->
+    <div class="inline-flex items-center gap-6 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full text-xs tracking-widest text-[#E5DDCB] opacity-0 animate-[fadeIn_1.5s_ease-out_1s_forwards]">
+     <span class="flex items-center gap-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping">
+      </span>
+      <span>
+       HAKONE, JAPAN
+      </span>
+     </span>
+     <span class="w-[1px] h-4 bg-white/20">
+     </span>
+     <span id="forest-time">
+      15:30
+     </span>
+     <span class="w-[1px] h-4 bg-white/20">
+     </span>
+     <span class="flex items-center gap-1">
+      <span class="text-xs text-[#C5A473]">
+       ✦
+      </span>
+      <span>
+       18°C / MISTY WIND
+      </span>
+     </span>
+    </div>
+   </div>
+   <!-- Scroll Indicator -->
+   <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-80">
+    <span class="text-[9px] tracking-[0.4em] uppercase text-[#C5A473]">
+     Scroll
+    </span>
+    <div class="w-[1px] h-12 bg-gradient-to-b from-[#C5A473] to-transparent animate-[scrollLine_2s_infinite]">
+    </div>
+   </div>
+  </section>
+  <!-- Concept Section -->
+  <section class="relative py-24 lg:py-40 px-6 overflow-hidden" id="concept">
+   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+    <!-- Left Side: Conceptual Architectural Lines (Replacing Image) -->
+    <div class="lg:col-span-5 relative h-[350px] lg:h-[500px] border border-[#C5A473]/30 p-8 flex flex-col justify-between overflow-hidden group">
+     <!-- Background interactive topography SVG design -->
+     <svg class="absolute inset-0 w-full h-full text-[#C5A473]/10 pointer-events-none group-hover:scale-105 transition-transform duration-1000" fill="none" viewbox="0 0 400 600">
+      <path d="M 0,200 Q 100,150 200,300 T 400,200" stroke="currentColor" stroke-width="1">
+      </path>
+      <path d="M 0,250 Q 80,220 180,330 T 400,280" stroke="currentColor" stroke-width="1">
+      </path>
+      <path d="M 0,300 Q 120,280 220,380 T 400,350" stroke="currentColor" stroke-width="1">
+      </path>
+      <path d="M 0,350 Q 60,320 250,420 T 400,400" stroke="currentColor" stroke-width="1">
+      </path>
+      <path d="M 0,100 Q 200,50 400,100" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1">
+      </path>
+      <path d="M 0,500 Q 200,450 400,500" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1">
+      </path>
+     </svg>
+     <div class="relative z-10">
+      <span class="font-serif-lux text-5xl text-[#C5A473]/30 font-light block">
+       01
+      </span>
+      <span class="text-[10px] tracking-[0.4em] text-[#C5A473] block mt-2">
+       THE SANCTUARY
+      </span>
+     </div>
+     <!-- Poetry/Philosophy abstract visual layout -->
+     <div class="relative z-10 border-l border-[#C5A473]/40 pl-6 my-auto">
+      <p class="font-serif-lux text-xl lg:text-2xl text-stone-700 leading-relaxed font-light">
+       「静寂を贅沢にする」
+      </p>
+      <p class="text-xs text-stone-500 tracking-wider mt-2 font-light">
+       私たちは、何もない贅沢を追求します。
+       <br/>
+       原生林に溶け込む庵で、鳥の声と風の音を、ただ呼吸する。
+      </p>
+     </div>
+     <div class="relative z-10 flex justify-between items-end text-[9px] tracking-widest text-[#C5A473]">
+      <span>
+       EST. 2024
+      </span>
+      <span>
+       HAKONE, KANAGAWA
+      </span>
+     </div>
+    </div>
+    <!-- Right Side: Narrative Copy & Editorial Layout -->
+    <div class="lg:col-span-7 space-y-8">
+     <span class="text-xs tracking-[0.4em] text-[#C5A473] font-semibold uppercase block">
+      PHILOSOPHY
+     </span>
+     <h3 class="font-serif-lux text-3xl lg:text-4xl text-[#1C3326] font-light leading-snug">
+      自然の脈動と溶け合う、
+      <br/>
+      五感のための庵。
+     </h3>
+     <div class="h-[1px] w-24 bg-[#C5A473]">
+     </div>
+     <div class="text-stone-600 text-sm leading-8 space-y-6 font-light">
+      <p>
+       「森泉（しんせん）」は、箱根の奥深き原生林にひっそりと佇む、全六棟の極小プライベートリゾートです。
+                        敷地内から滾々と湧き出る自家源泉と、ただ静かに移ろう木々の影。
+      </p>
+      <p>
+       余計な装飾を削ぎ落とし、ただ自然との一体感を得るためだけに設計された建築は、
+                        時の流れを忘れさせ、あなた本来の感覚を呼び覚まします。
+                        デジタルから切り離され、ただ風のささやきに耳を傾ける至福の時間をお過ごしください。
+      </p>
+     </div>
+     <!-- Abstract Dynamic Vector Spec Sheet (Rich Interactive Touch) -->
+     <div class="grid grid-cols-3 gap-6 pt-6 border-t border-stone-200">
+      <div>
+       <span class="font-serif-lux text-2xl text-[#C5A473] block">
+        6
+        <span class="text-xs text-stone-500 font-sans ml-1">
+         棟
+        </span>
+       </span>
+       <span class="text-[9px] tracking-widest text-stone-400 uppercase">
+        Independent Villas
+       </span>
+      </div>
+      <div>
+       <span class="font-serif-lux text-2xl text-[#C5A473] block">
+        100%
+       </span>
+       <span class="text-[9px] tracking-widest text-stone-400 uppercase">
+        Pure Natural Onsen
+       </span>
+      </div>
+      <div>
+       <span class="font-serif-lux text-2xl text-[#C5A473] block">
+        30k
+        <span class="text-xs text-stone-500 font-sans ml-1">
+         ㎡
+        </span>
+       </span>
+       <span class="text-[9px] tracking-widest text-stone-400 uppercase">
+        Protected Forest Area
+       </span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Villas & Suites Section (The Highlight Grid - Pure Vector Styling) -->
+  <section class="bg-[#1C3326] text-[#F5F2EB] py-24 lg:py-40 px-6 relative overflow-hidden" id="villas">
+   <!-- Background graphics -->
+   <div class="absolute -right-1/4 top-1/4 w-[800px] h-[800px] bg-[#0F1E16] rounded-full ambient-glow">
+   </div>
+   <div class="max-w-7xl mx-auto relative z-10">
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 lg:mb-24 gap-6">
+     <div>
+      <span class="text-xs tracking-[0.4em] text-[#C5A473] uppercase block mb-3">
+       VILLAS &amp; SUITES
+      </span>
+      <h3 class="font-serif-lux text-3xl lg:text-5xl font-light tracking-[0.15em] text-[#F5F2EB]">
+       離れ・客室
+      </h3>
+     </div>
+     <p class="text-stone-300 text-xs tracking-wider max-w-sm font-light leading-relaxed">
+      それぞれ異なる源泉意匠、異なる借景。自然と一体になるためだけに誂えた、プライベートな空間美。
+     </p>
+    </div>
+    <!-- Custom Premium Layout Grid without Images -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+     <!-- Room Card 1: KAN - 閑 -->
+     <div class="room-card border border-[#C5A473]/10 bg-[#0F1E16]/40 p-8 lg:p-10 flex flex-col justify-between h-[550px] group">
+      <div>
+       <div class="flex justify-between items-start mb-12">
+        <span class="font-serif-lux text-5xl text-[#C5A473]/20 group-hover:text-[#C5A473]/60 transition-colors">
+         壱
+        </span>
+        <span class="border border-[#C5A473] text-[9px] tracking-widest text-[#C5A473] px-3 py-1 uppercase rounded-full">
+         Private Onsen
+        </span>
+       </div>
+       <!-- Dynamic Blueprint/Schematic Line Art representing "Room Layout" -->
+       <div class="h-32 flex items-center justify-center relative my-6">
+        <svg class="w-full h-full text-[#C5A473]/30 transition-all duration-700 group-hover:scale-105" fill="none" viewbox="0 0 200 100">
+         <rect height="80" stroke="currentColor" stroke-dasharray="2 2" stroke-width="0.75" width="180" x="10" y="10">
+         </rect>
+         <rect height="50" stroke="currentColor" stroke-width="1.5" width="70" x="30" y="30">
+         </rect>
+         <circle cx="150" cy="50" r="20" stroke="currentColor" stroke-width="0.75">
+         </circle>
+         <path d="M135 50 L165 50 M150 35 L150 65" stroke="currentColor" stroke-width="0.75">
+         </path>
+         <text fill="#C5A473" font-size="6" letter-spacing="1" x="35" y="25">
+          TERRACE &amp; SPRING
+         </text>
+         <text fill="#C5A473" font-size="6" letter-spacing="1" x="135" y="25">
+          BEDROOM
+         </text>
+        </svg>
+       </div>
+       <h4 class="font-serif-lux text-2xl text-[#F5F2EB] font-light mb-2">
+        閑 KAN
+        <span class="text-xs text-stone-400 font-sans ml-2">
+         定員：2名
+        </span>
+       </h4>
+       <p class="text-xs text-stone-300 leading-relaxed font-light">
+        森に最もせり出した絶景半露天風呂と、テラスを配した極上の贅。ただ風に揺れる梢と一体化する時間を。
+       </p>
+      </div>
+      <div class="pt-6 border-t border-[#C5A473]/20 flex justify-between items-center">
+       <span class="text-xs tracking-widest text-[#C5A473]">
+        ¥120,000〜
+        <span class="text-[9px] text-stone-400">
+         / 1名 (2食付)
+        </span>
+       </span>
+       <a class="text-[10px] tracking-widest text-stone-200 group-hover:text-[#C5A473] transition-colors flex items-center gap-2" href="#reserve">
+        DETAILS
+        <span>
+         →
+        </span>
+       </a>
+      </div>
+     </div>
+     <!-- Room Card 2: SHIN - 深 -->
+     <div class="room-card border border-[#C5A473]/10 bg-[#0F1E16]/40 p-8 lg:p-10 flex flex-col justify-between h-[550px] group">
+      <div>
+       <div class="flex justify-between items-start mb-12">
+        <span class="font-serif-lux text-5xl text-[#C5A473]/20 group-hover:text-[#C5A473]/60 transition-colors">
+         弐
+        </span>
+        <span class="border border-[#C5A473] text-[9px] tracking-widest text-[#C5A473] px-3 py-1 uppercase rounded-full">
+         Villa Complex
+        </span>
+       </div>
+       <!-- Dynamic Blueprint/Schematic Line Art -->
+       <div class="h-32 flex items-center justify-center relative my-6">
+        <svg class="w-full h-full text-[#C5A473]/30 transition-all duration-700 group-hover:scale-105" fill="none" viewbox="0 0 200 100">
+         <rect height="60" stroke="currentColor" stroke-width="0.75" width="160" x="20" y="20">
+         </rect>
+         <path d="M 20,50 L 180,50 M 100,20 L 100,80" stroke="currentColor" stroke-dasharray="1 3" stroke-width="0.75">
+         </path>
+         <rect height="30" stroke="currentColor" stroke-width="1.5" width="40" x="35" y="30">
+         </rect>
+         <rect height="30" stroke="currentColor" stroke-width="1.5" width="40" x="125" y="30">
+         </rect>
+         <circle cx="100" cy="50" r="10" stroke="currentColor" stroke-width="1">
+         </circle>
+         <text fill="#C5A473" font-size="6" letter-spacing="1" x="25" y="15">
+          LIVING
+         </text>
+         <text fill="#C5A473" font-size="6" letter-spacing="1" x="145" y="15">
+          SPRING BATH
+         </text>
+        </svg>
+       </div>
+       <h4 class="font-serif-lux text-2xl text-[#F5F2EB] font-light mb-2">
+        深 SHIN
+        <span class="text-xs text-stone-400 font-sans ml-2">
+         定員：4名
+        </span>
+       </h4>
+       <p class="text-xs text-stone-300 leading-relaxed font-light">
+        森の懐に包まれるメゾネットヴィラ。二つの階層に広がる檜風呂と、薪の揺らぎを楽しむプライベート暖炉を完備。
+       </p>
+      </div>
+      <div class="pt-6 border-t border-[#C5A473]/20 flex justify-between items-center">
+       <span class="text-xs tracking-widest text-[#C5A473]">
+        ¥150,000〜
+        <span class="text-[9px] text-stone-400">
+         / 1名 (2食付)
+        </span>
+       </span>
+       <a class="text-[10px] tracking-widest text-stone-200 group-hover:text-[#C5A473] transition-colors flex items-center gap-2" href="#reserve">
+        DETAILS
+        <span>
+         →
+        </span>
+       </a>
+      </div>
+     </div>
+     <!-- Room Card 3: SUI - 翠 -->
+     <div class="room-card border border-[#C5A473]/10 bg-[#0F1E16]/40 p-8 lg:p-10 flex flex-col justify-between h-[550px] group">
+      <div>
+       <div class="flex justify-between items-start mb-12">
+        <span class="font-serif-lux text-5xl text-[#C5A473]/20 group-hover:text-[#C5A473]/60 transition-colors">
+         参
+        </span>
+        <span class="border border-[#C5A473] text-[9px] tracking-widest text-[#C5A473] px-3 py-1 uppercase rounded-full">
+         Suite Sanctuary
+        </span>
+       </div>
+       <!-- Dynamic Blueprint/Schematic Line Art -->
+       <div class="h-32 flex items-center justify-center relative my-6">
+        <svg class="w-full h-full text-[#C5A473]/30 transition-all duration-700 group-hover:scale-105" fill="none" viewbox="0 0 200 100">
+         <circle cx="100" cy="50" r="40" stroke="currentColor" stroke-dasharray="4 4" stroke-width="0.75">
+         </circle>
+         <rect height="40" stroke="currentColor" stroke-width="1.5" width="40" x="80" y="30">
+         </rect>
+         <path d="M 60,50 Q 100,20 140,50 T 60,50" stroke="currentColor" stroke-width="0.75">
+         </path>
+         <text fill="#C5A473" font-size="6" letter-spacing="1" x="50" y="15">
+          DOME TERRACE
+         </text>
+        </svg>
+       </div>
+       <h4 class="font-serif-lux text-2xl text-[#F5F2EB] font-light mb-2">
+        翠 SUI
+        <span class="text-xs text-stone-400 font-sans ml-2">
+         定員：2名
+        </span>
+       </h4>
+       <p class="text-xs text-stone-300 leading-relaxed font-light">
+        もっとも高いロケーションから箱根連山を望む最上階スイート。一枚の絵画のような大開口パノラマビュー。
+       </p>
+      </div>
+      <div class="pt-6 border-t border-[#C5A473]/20 flex justify-between items-center">
+       <span class="text-xs tracking-widest text-[#C5A473]">
+        ¥180,000〜
+        <span class="text-[9px] text-stone-400">
+         / 1名 (2食付)
+        </span>
+       </span>
+       <a class="text-[10px] tracking-widest text-stone-200 group-hover:text-[#C5A473] transition-colors flex items-center gap-2" href="#reserve">
+        DETAILS
+        <span>
+         →
+        </span>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Experience Timeline (High-end Japanese-styled storytelling) -->
+  <section class="py-24 lg:py-40 bg-[#F5F2EB] text-[#1C3326] relative overflow-hidden" id="experience">
+   <!-- Interactive Zen Ripple SVG Background on Hover -->
+   <svg class="absolute inset-0 w-full h-full text-[#C5A473]/15 pointer-events-none transition-all duration-1000" fill="none" id="zen-ripple-svg" viewbox="0 0 800 800">
+    <circle cx="400" cy="400" r="100" stroke="currentColor" stroke-width="0.5">
+    </circle>
+    <circle cx="400" cy="400" r="200" stroke="currentColor" stroke-width="0.5">
+    </circle>
+    <circle cx="400" cy="400" r="300" stroke="currentColor" stroke-width="0.5">
+    </circle>
+    <circle cx="400" cy="400" r="400" stroke="currentColor" stroke-width="0.5">
+    </circle>
+   </svg>
+   <div class="max-w-5xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 lg:mb-24">
+     <span class="text-xs tracking-[0.4em] text-[#C5A473] uppercase block mb-3">
+      EXPERIENCE
+     </span>
+     <h3 class="font-serif-lux text-3xl lg:text-4xl font-light tracking-[0.15em] text-[#1C3326]">
+      移ろう時のなかで
+     </h3>
+     <div class="h-[1px] w-20 bg-[#C5A473] mx-auto mt-6">
+     </div>
+    </div>
+    <!-- Vertical Timeline representing 'A Rich Day' -->
+    <div class="relative border-l border-[#C5A473]/40 pl-8 lg:pl-16 ml-4 lg:ml-24 space-y-16">
+     <!-- Time Block 1 -->
+     <div class="relative group">
+      <!-- Dot marker -->
+      <div class="absolute -left-[37px] lg:-left-[69px] top-1.5 w-4 h-4 rounded-full border border-[#C5A473] bg-[#F5F2EB] flex items-center justify-center transition-all duration-500 group-hover:bg-[#C5A473]">
+       <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#F5F2EB] transition-colors">
+       </span>
+      </div>
+      <div>
+       <span class="font-serif-lux text-xl lg:text-2xl text-[#C5A473] tracking-wider block mb-2">
+        06:00
+        <span class="text-xs tracking-widest text-stone-500 ml-2">
+         朝霧と静寂
+        </span>
+       </span>
+       <h4 class="font-serif-lux text-lg text-stone-800 font-light mb-2">
+        原生林の覚醒に立ち会う
+       </h4>
+       <p class="text-xs text-stone-500 leading-relaxed font-light max-w-xl">
+        薄霧が立ち込める森を眺めながら、湧き立ての源泉を浴びる極上の夜明け。澄みきった冷気と湯けむりに包まれるひとときに、生命の呼吸を感じます。
+       </p>
+      </div>
+     </div>
+     <!-- Time Block 2 -->
+     <div class="relative group">
+      <!-- Dot marker -->
+      <div class="absolute -left-[37px] lg:-left-[69px] top-1.5 w-4 h-4 rounded-full border border-[#C5A473] bg-[#F5F2EB] flex items-center justify-center transition-all duration-500 group-hover:bg-[#C5A473]">
+       <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#F5F2EB] transition-colors">
+       </span>
+      </div>
+      <div>
+       <span class="font-serif-lux text-xl lg:text-2xl text-[#C5A473] tracking-wider block mb-2">
+        15:00
+        <span class="text-xs tracking-widest text-stone-500 ml-2">
+         茶室瞑想
+        </span>
+       </span>
+       <h4 class="font-serif-lux text-lg text-stone-800 font-light mb-2">
+        静寂を嗜むお点前
+       </h4>
+       <p class="text-xs text-stone-500 leading-relaxed font-light max-w-xl">
+        森の中に半ば浮き立つように佇む「茶庵（Saan）」。風の揺らぎや水音を聴きながら、淹れ立ての薄茶を心静かにいただくマインドフルな茶体験。
+       </p>
+      </div>
+     </div>
+     <!-- Time Block 3 -->
+     <div class="relative group">
+      <!-- Dot marker -->
+      <div class="absolute -left-[37px] lg:-left-[69px] top-1.5 w-4 h-4 rounded-full border border-[#C5A473] bg-[#F5F2EB] flex items-center justify-center transition-all duration-500 group-hover:bg-[#C5A473]">
+       <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#F5F2EB] transition-colors">
+       </span>
+      </div>
+      <div>
+       <span class="font-serif-lux text-xl lg:text-2xl text-[#C5A473] tracking-wider block mb-2">
+        19:00
+        <span class="text-xs tracking-widest text-stone-500 ml-2">
+         野趣のガストロノミー
+        </span>
+       </span>
+       <h4 class="font-serif-lux text-lg text-stone-800 font-light mb-2">
+        森と土の声を聴く食事
+       </h4>
+       <p class="text-xs text-stone-500 leading-relaxed font-light max-w-xl">
+        箱根の肥沃な大地と、駿河湾の豊かな海が育んだ自然派のモダンキュイジーヌ。素材そのものの美しさと野性味を、極小の調味で美しく表現します。
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Luxury Booking / Call To Action Section (No Image Challenge Met with Exquisite Typography & Lines) -->
+  <section class="bg-[#0F1E16] text-[#F5F2EB] py-24 lg:py-32 relative overflow-hidden" id="reserve">
+   <!-- Interactive Geometric Forest Lines (Fine luxury SVG) -->
+   <div class="absolute inset-0 opacity-15 pointer-events-none">
+    <svg class="w-full h-full text-[#C5A473]" fill="none" viewbox="0 0 1000 1000">
+     <line stroke="currentColor" stroke-width="0.5" x1="100" x2="100" y1="0" y2="1000">
+     </line>
+     <line stroke="currentColor" stroke-width="0.5" x1="300" x2="300" y1="0" y2="1000">
+     </line>
+     <line stroke="currentColor" stroke-width="0.5" x1="500" x2="500" y1="0" y2="1000">
+     </line>
+     <line stroke="currentColor" stroke-width="0.5" x1="700" x2="700" y1="0" y2="1000">
+     </line>
+     <line stroke="currentColor" stroke-width="0.5" x1="900" x2="900" y1="0" y2="1000">
+     </line>
+     <circle cx="500" cy="500" r="300" stroke="currentColor" stroke-dasharray="10 10" stroke-width="1">
+     </circle>
+    </svg>
+   </div>
+   <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+    <span class="text-xs tracking-[0.4em] text-[#C5A473] uppercase block mb-4">
+     RESERVATION
+    </span>
+    <h3 class="font-serif-lux text-3xl lg:text-5xl font-light tracking-[0.2em] mb-12">
+     心ほどく、静寂への旅。
+    </h3>
+    <!-- Highly Polished Booking Widget -->
+    <div class="bg-white/5 backdrop-blur-md border border-[#C5A473]/30 p-8 rounded-lg shadow-2xl text-left max-w-3xl mx-auto">
+     <form class="space-y-6" id="booking-form">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+       <!-- Check In/Out Date -->
+       <div class="flex flex-col gap-2">
+        <label class="text-[9px] tracking-widest text-[#C5A473] uppercase">
+         CHECK IN
+        </label>
+        <input class="bg-transparent border-b border-stone-600 focus:border-[#C5A473] py-2 text-sm text-[#F5F2EB] outline-none" type="date" value="2024-11-20"/>
+       </div>
+       <!-- Room Selector -->
+       <div class="flex flex-col gap-2">
+        <label class="text-[9px] tracking-widest text-[#C5A473] uppercase">
+         ROOM TYPE
+        </label>
+        <select class="bg-transparent border-b border-stone-600 focus:border-[#C5A473] py-2 text-sm text-[#F5F2EB] outline-none appearance-none cursor-pointer">
+         <option class="bg-[#0F1E16]" value="kan">
+          閑 KAN — Private Terrace Suite
+         </option>
+         <option class="bg-[#0F1E16]" value="shin">
+          深 SHIN — Duplex Wood Villa
+         </option>
+         <option class="bg-[#0F1E16]" value="sui">
+          翠 SUI — Panorama Luxury Suite
+         </option>
+        </select>
+       </div>
+       <!-- Guests -->
+       <div class="flex flex-col gap-2">
+        <label class="text-[9px] tracking-widest text-[#C5A473] uppercase">
+         GUESTS
+        </label>
+        <select class="bg-transparent border-b border-stone-600 focus:border-[#C5A473] py-2 text-sm text-[#F5F2EB] outline-none appearance-none cursor-pointer">
+         <option class="bg-[#0F1E16]" value="1">
+          1 Person
+         </option>
+         <option class="bg-[#0F1E16]" selected="" value="2">
+          2 Persons
+         </option>
+         <option class="bg-[#0F1E16]" value="3">
+          3 Persons
+         </option>
+         <option class="bg-[#0F1E16]" value="4">
+          4 Persons
+         </option>
+        </select>
+       </div>
+      </div>
+      <!-- Book Trigger Button -->
+      <div class="pt-4 text-center">
+       <button class="w-full relative group overflow-hidden bg-[#C5A473] text-[#0F1E16] py-4 text-xs tracking-[0.4em] font-medium duration-500" type="submit">
+        <span class="absolute inset-0 bg-white scale-x-0 origin-right transition-transform duration-500 group-hover:scale-x-100 group-hover:origin-left">
+        </span>
+        <span class="relative z-10">
+         SEARCH AVAILABILITY
+        </span>
+       </button>
+      </div>
+     </form>
+    </div>
+    <!-- Inquiries -->
+    <p class="text-[10px] tracking-[0.2em] text-[#C5A473] mt-8">
+     お電話でのご予約・お問い合わせ：
+     <span class="font-sans text-xs">
+      0460-xx-xxxx
+     </span>
+     (9:00 - 18:00)
+    </p>
+   </div>
+  </section>
+  <!-- Geographic / Access Details -->
+  <section class="py-24 bg-[#F5F2EB] text-[#1C3326] px-6 relative" id="access">
+   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <!-- Left Side: Conceptual Geodetic Map / Coordinate Design -->
+    <div class="h-[350px] bg-[#1C3326] p-8 rounded-lg flex flex-col justify-between text-[#F5F2EB] relative overflow-hidden group">
+     <!-- Golden topographic vector graphic -->
+     <svg class="absolute inset-0 w-full h-full text-[#C5A473]/15 group-hover:scale-105 duration-1000" fill="none" viewbox="0 0 400 300">
+      <circle cx="200" cy="150" r="100" stroke="currentColor" stroke-width="0.5">
+      </circle>
+      <circle cx="200" cy="150" r="50" stroke="currentColor" stroke-dasharray="2 2">
+      </circle>
+      <line stroke="currentColor" stroke-dasharray="5 5" stroke-width="0.5" x1="200" x2="200" y1="0" y2="300">
+      </line>
+      <line stroke="currentColor" stroke-dasharray="5 5" stroke-width="0.5" x1="0" x2="400" y1="150" y2="150">
+      </line>
+      <path d="M50 100 L350 200" stroke="currentColor" stroke-width="1">
+      </path>
+      <text fill="#C5A473" font-size="8" x="210" y="140">
+       SEN SANCTUARY
+      </text>
+     </svg>
+     <div class="relative z-10 flex justify-between items-start">
+      <div>
+       <span class="text-[9px] tracking-widest text-[#C5A473] uppercase">
+        LOCATION COORD
+       </span>
+       <h4 class="font-serif-lux text-xl mt-1">
+        35.2016° N, 139.0347° E
+       </h4>
+      </div>
+      <span class="text-xs text-[#C5A473]">
+       ✦
+      </span>
+     </div>
+     <div class="relative z-10">
+      <p class="text-xs text-stone-300 tracking-wider leading-relaxed">
+       「箱根登山鉄道強羅駅」より専用車送迎（要予約）で約15分。
+       <br/>
+       静寂が広がる保護林エリアに、森泉は存在します。
+      </p>
+     </div>
+    </div>
+    <!-- Right Side: Access Instructions -->
+    <div class="space-y-6">
+     <span class="text-xs tracking-[0.4em] text-[#C5A473] uppercase block">
+      ACCESS
+     </span>
+     <h3 class="font-serif-lux text-3xl text-stone-800 font-light">
+      森への路。
+     </h3>
+     <div class="h-[1px] w-12 bg-[#C5A473]">
+     </div>
+     <div class="space-y-4 text-xs text-stone-600 leading-6 font-light">
+      <div>
+       <h5 class="font-medium text-stone-800 tracking-wider">
+        電車でお越しの方へ
+       </h5>
+       <p class="mt-1">
+        東京駅より東海道新幹線にて小田原駅まで約30分。
+        <br/>
+        小田原駅より箱根登山鉄道にて箱根湯本・強羅駅へ。強羅駅より専用リムジンにて送迎いたします。
+       </p>
+      </div>
+      <div>
+       <h5 class="font-medium text-stone-800 tracking-wider">
+        お車でお越しの方へ
+       </h5>
+       <p class="mt-1">
+        東京方面より：東名高速道路「御殿場IC」より乙女峠経由、約30分。
+        <br/>
+        関西方面より：沼津ICより伊豆縦貫自動車道経由、約40分。
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-[#0F1E16] text-[#F5F2EB]/50 py-16 px-6 text-xs tracking-widest border-t border-[#C5A473]/10">
+   <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+    <div class="flex items-center gap-4">
+     <span class="font-serif-lux text-lg tracking-[0.3em] text-[#C5A473]">
+      森泉
+     </span>
+     <span class="text-[9px] tracking-widest text-stone-400">
+      © 2024 SEN FOREST RESORT CO., LTD. ALL RIGHTS RESERVED.
+     </span>
+    </div>
+    <div class="flex gap-8 text-[10px]">
+     <a class="hover:text-[#C5A473] transition-colors" href="#">
+      PRIVACY POLICY
+     </a>
+     <a class="hover:text-[#C5A473] transition-colors" href="#">
+      CONTACT US
+     </a>
+    </div>
+   </div>
+  </footer>
+  <!-- JavaScript For Smooth Interactions, Particles & Header transitions -->
+  <script src="app.js">
+  </script>
+ </body>
+</html>
