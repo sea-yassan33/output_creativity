@@ -138,7 +138,7 @@ google_callback = GoogleMetadataCallback()
 llm_api_gemini = ChatGoogleGenerativeAI(
   model="gemini-3.5-flash",
   google_api_key=os.environ['GOOGLE_AI_ST_API'],
-  temperature=0,
+  temperature=0.7,
   callbacks=[google_callback]
 )
 ## プロンプト
