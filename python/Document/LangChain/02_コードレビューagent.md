@@ -22,14 +22,6 @@ from langchain_core.output_parsers import StrOutputParser
 
 [レビュー対象のサンプルコード](../LangChain/sample/review_subject.js)
 
-## 実装
-
-[code_review_agent.py](../LangChain/code_review_agent.py)
-
-## 出力例
-
-[出力例](../LangChain/out/code_review_agent.md)
-
 ## 後記
 - 今回はRAG（検索拡張生成）の仕組みは取り入れてはいませんが、RAGを入れることでチーム内・組織内の規約に沿ったコードレビュー生成をしてくれると思います。
 - コードレビューにかける時間や負担の軽減に繋がるのではないかと思いました。
