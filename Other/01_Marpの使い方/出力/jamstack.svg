@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 620" width="680" height="620" style="background-color: #ffffff; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;">
+  <defs>
+    <!-- 矢印マーカー -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b" />
+    </marker>
+    <!-- ドロップシドフィルター -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 接続線とラベル -->
+  <!-- A -> B -->
+  <path d="M 340 85 L 340 148" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <rect x="300" y="105" width="80" height="24" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="340" y="121" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">入力</text>
+
+  <!-- B -> C -->
+  <path d="M 340 210 L 340 278" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <rect x="250" y="232" width="180" height="24" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="340" y="248" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">Webhook (更新通知)</text>
+
+  <!-- C -> D -->
+  <path d="M 340 340 L 340 433" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <rect x="160" y="367" width="360" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="340" y="383" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">ビルド</text>
+  <text x="340" y="398" font-size="10" fill="#64748b" text-anchor="middle">(Next.js などが API からコンテンツ取得)</text>
+
+  <!-- D -> E -->
+  <path d="M 340 485 L 340 533" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+
+  <!-- ノード要素 -->
+  <!-- Node A: 編集者 -->
+  <rect x="250" y="35" width="180" height="50" rx="25" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)" />
+  <text x="340" y="65" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">編集者</text>
+
+  <!-- Node B: ヘッドレスCMS -->
+  <rect x="220" y="150" width="240" height="60" rx="30" fill="#f0fdf4" stroke="#22c55e" stroke-width="2" filter="url(#shadow)" />
+  <text x="340" y="177" font-size="13" font-weight="bold" fill="#14532d" text-anchor="middle">ヘッドレスCMS</text>
+  <text x="340" y="195" font-size="11" fill="#166534" opacity="0.85" text-anchor="middle">microCMS など</text>
+
+  <!-- Node C: ホスティング -->
+  <rect x="220" y="280" width="240" height="60" rx="30" fill="#faf5ff" stroke="#a855f7" stroke-width="2" filter="url(#shadow)" />
+  <text x="340" y="307" font-size="13" font-weight="bold" fill="#581c87" text-anchor="middle">ホスティング</text>
+  <text x="340" y="325" font-size="11" fill="#6b21a8" opacity="0.85" text-anchor="middle">Vercel / Netlify</text>
+
+  <!-- Node D: CDN 配信 -->
+  <rect x="240" y="435" width="200" height="50" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2" filter="url(#shadow)" />
+  <text x="340" y="465" font-size="14" font-weight="bold" fill="#7c2d12" text-anchor="middle">CDN 配信</text>
+
+  <!-- Node E: 閲覧者 -->
+  <rect x="250" y="535" width="180" height="50" rx="25" fill="#f1f5f9" stroke="#64748b" stroke-width="2" filter="url(#shadow)" />
+  <text x="340" y="565" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">閲覧者</text>
+</svg>

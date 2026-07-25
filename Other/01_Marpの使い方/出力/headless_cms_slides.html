@@ -1040,7 +1040,7 @@ section.toc a {
 </tbody>
 </table>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-marpit-fragments="2" data-paginate="true" data-theme="default" data-style="section {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-theme="default" data-style="section {
   justify-content: flex-start;
   padding: 130px 70px 70px;
   font-size: 26px;
@@ -1122,22 +1122,140 @@ section.toc a {
   text-decoration: none;
   border-bottom: 1px dotted #1a4d8f;
 }
-;" data-marpit-pagination-total="15" data-size="16:9">
+;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="15" data-size="16:9" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;./jamstack.svg&quot;);"></figure></div></section></foreignObject><foreignObject width="60%" height="720"><section id="11" data-marpit-fragments="2" data-paginate="true" data-theme="default" data-style="section {
+  justify-content: flex-start;
+  padding: 130px 70px 70px;
+  font-size: 26px;
+}
+section h1,
+section h2 {
+  position: absolute;
+  top: 48px;
+  left: 70px;
+  right: 70px;
+  margin: 0;
+  padding: 0 0 10px 18px;
+  font-size: 34px;
+  text-align: left;
+  color: #1a4d8f;
+  border-left: 8px solid #1a4d8f;
+  border-bottom: 2px solid #d5dde8;
+}
+section.title {
+  justify-content: center;
+  text-align: center;
+  padding: 70px;
+}
+section.title h1 {
+  position: static;
+  border: none;
+  padding: 0;
+  font-size: 52px;
+  text-align: center;
+  color: #1a4d8f;
+}
+section.toc ol {
+  font-size: 30px;
+  line-height: 1.8;
+}
+section.toc a {
+  color: #1a4d8f;
+  text-decoration: none;
+  border-bottom: 1px dotted #1a4d8f;
+}
+" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--theme:default;--style:section {
+  justify-content: flex-start;
+  padding: 130px 70px 70px;
+  font-size: 26px;
+}
+section h1,
+section h2 {
+  position: absolute;
+  top: 48px;
+  left: 70px;
+  right: 70px;
+  margin: 0;
+  padding: 0 0 10px 18px;
+  font-size: 34px;
+  text-align: left;
+  color: #1a4d8f;
+  border-left: 8px solid #1a4d8f;
+  border-bottom: 2px solid #d5dde8;
+}
+section.title {
+  justify-content: center;
+  text-align: center;
+  padding: 70px;
+}
+section.title h1 {
+  position: static;
+  border: none;
+  padding: 0;
+  font-size: 52px;
+  text-align: center;
+  color: #1a4d8f;
+}
+section.toc ol {
+  font-size: 30px;
+  line-height: 1.8;
+}
+section.toc a {
+  color: #1a4d8f;
+  text-decoration: none;
+  border-bottom: 1px dotted #1a4d8f;
+}
+;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="15" data-size="16:9" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h2 id="8-%E4%B8%80%E8%88%AC%E7%9A%84%E3%81%AA%E6%A7%8B%E6%88%90%E4%BE%8Bjamstack">8. 一般的な構成例（Jamstack）</h2>
 <p>ヘッドレスCMS は「Jamstack」と呼ばれる構成でよく使われます。</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-mermaid">graph TD
-    A[編集者] --&gt;|入力| B(ヘッドレスCMS: microCMS など)
-    B --&gt;|Webhook (更新通知)| C(ホスティング: Vercel / Netlify)
-    C --&gt;|ビルド (Next.js などが API からコンテンツ取得)| D[CDN 配信]
-    D --&gt; E(閲覧者)
-</code></pre>
+
 <p><strong>ポイント:</strong></p>
 <ul>
 <li data-marpit-fragment="1">コンテンツ更新をトリガーにサイトを自動ビルド・再配信する</li>
 <li data-marpit-fragment="2">閲覧者には CDN 上の静的ファイルが返るため高速</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-marpit-fragments="7" data-paginate="true" data-theme="default" data-style="section {
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-marpit-fragments="2" data-paginate="true" data-theme="default" data-style="section {
+  justify-content: flex-start;
+  padding: 130px 70px 70px;
+  font-size: 26px;
+}
+section h1,
+section h2 {
+  position: absolute;
+  top: 48px;
+  left: 70px;
+  right: 70px;
+  margin: 0;
+  padding: 0 0 10px 18px;
+  font-size: 34px;
+  text-align: left;
+  color: #1a4d8f;
+  border-left: 8px solid #1a4d8f;
+  border-bottom: 2px solid #d5dde8;
+}
+section.title {
+  justify-content: center;
+  text-align: center;
+  padding: 70px;
+}
+section.title h1 {
+  position: static;
+  border: none;
+  padding: 0;
+  font-size: 52px;
+  text-align: center;
+  color: #1a4d8f;
+}
+section.toc ol {
+  font-size: 30px;
+  line-height: 1.8;
+}
+section.toc a {
+  color: #1a4d8f;
+  text-decoration: none;
+  border-bottom: 1px dotted #1a4d8f;
+}
+" lang="en-US" data-marpit-pagination="11" style="" data-marpit-pagination-total="15" data-size="16:9" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-marpit-fragments="7" data-paginate="true" data-theme="default" data-style="section {
   justify-content: flex-start;
   padding: 130px 70px 70px;
   font-size: 26px;
