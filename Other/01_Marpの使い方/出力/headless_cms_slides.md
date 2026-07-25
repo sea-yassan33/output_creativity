@@ -186,10 +186,10 @@ Web サイトの文章・画像などのコンテンツを、専門知識がな�
 
 ```mermaid
 graph TD
-    A[編集者] -->|入力| B(ヘッドレスCMS: microCMS など)
-    B -->|Webhook (更新通知)| C(ホスティング: Vercel / Netlify)
-    C -->|ビルド (Next.js などが API からコンテンツ取得)| D[CDN 配信]
-    D --> E(閲覧者)
+    A("編集者") -->|入力| B("ヘッドレスCMS: microCMS など")
+    B -->|Webhook (更新通知)| C("ホスティング: Vercel / Netlify")
+    C -->|"ビルド (Next.js などが API からコンテンツ取得)"| D["CDN 配信"]
+    D --> E("閲覧者")
 ```
 
 **ポイント:**
