@@ -43,3 +43,7 @@
 ### Added
 - [gemini_Langchai実装ソース](./python/00_source_code/2606_langChain/gemini_langchain.py)
 
+## 2026-10-18
+### Added
+- [playwrightについて](./Node/06_playwight/playwright.md)
+- [uv(pythonパッケージツール)](./python/07_uv/uvについて.md)
