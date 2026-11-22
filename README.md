@@ -11,4 +11,4 @@ https://github.com/sea-yassan33/output_creativity
 
 ## 開発用Knowledge
 
-https://www.engineer-syim.com/method
+https://sea-yaim-profile.vercel.app/method
