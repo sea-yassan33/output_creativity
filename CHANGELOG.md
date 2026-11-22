@@ -47,3 +47,8 @@
 ### Added
 - [playwrightについて](./Node/06_playwight/playwright.md)
 - [uv(pythonパッケージツール)](./python/07_uv/uvについて.md)
+
+## 2026-11-22
+### Added
+- [Kotlin_開発環境](./Kotlin/開発環境.md)
+- [Kotlin_Webアプリ開発](./Kotlin/WEB_APP/01_WEBアプリ開発方法.md)
