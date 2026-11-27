@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>確認リストテンプレート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    /* 自動/ライト/ダーク切替のため変数で定義 */
+:root{--c-ink:#150458;--c-paper:#F4F5FA;--c-surface:#FFF;--c-line:#DADCEA;--c-muted:#5B5E7A;--c-accent:#E70488;--c-code:#EEF0F8;--c-code-ink:#1F1A5E}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--c-ink:#E9E6FF;--c-paper:#0E0A2B;--c-surface:#17123D;--c-line:#2E2860;--c-muted:#A6A2CC;--c-accent:#FF4FB0;--c-code:#221B52;--c-code-ink:#E4E0FF}}
+:root[data-theme=dark]{--c-ink:#E9E6FF;--c-paper:#0E0A2B;--c-surface:#17123D;--c-line:#2E2860;--c-muted:#A6A2CC;--c-accent:#FF4FB0;--c-code:#221B52;--c-code-ink:#E4E0FF}
+@theme inline{
+  --color-ink:var(--c-ink);--color-paper:var(--c-paper);--color-surface:var(--c-surface);--color-line:var(--c-line);
+  --color-muted:var(--c-muted);--color-hl:#FFCA00;--color-accent:var(--c-accent);--color-code:var(--c-code);--color-code-ink:var(--c-code-ink);
+  --font-sans:"IBM Plex Sans JP","Hiragino Sans","Yu Gothic UI","Meiryo",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono","SFMono-Regular",Consolas,Menlo,monospace;
+}
+</style>
+</head>
+<!-- ▲上部編集不可▲ -->
+
+<body
+  class="bg-paper text-ink font-sans text-[15px] leading-[1.65] [&_mark]:bg-hl [&_mark]:text-[#150458] [&_mark]:rounded-sm [&_:focus-visible]:outline-2 [&_:focus-visible]:outline-offset-2 [&_:focus-visible]:outline-accent">
+  <!-- heder -->
+  <header class="sticky top-0 z-10 bg-paper border-b border-line">
+    <div class="max-w-[1040px] mx-auto px-5 pt-[18px] pb-3">
+      <div class="flex items-baseline gap-3 flex-wrap mb-2.5">
+        <h1 class="text-[15px] font-bold tracking-wide">テンプレート</h1>
+        <span class="text-[13px] text-muted" id="count"></span>
+        <button id="theme" type="button"
+          class="ml-auto border border-line text-muted rounded-md text-xs px-2.5 py-0.5 cursor-pointer">表示: 自動</button>
+      </div>
+      <div class="relative">
+        <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="検索ワードを入力" aria-label="検索"
+          class="peer w-full font-mono text-lg md:text-[22px] font-semibold bg-surface border-2 border-ink rounded-[10px] py-3 pl-4 pr-[90px] outline-none focus:ring-4 focus:ring-hl/55 placeholder:font-sans placeholder:font-normal placeholder:text-lg placeholder:text-muted">
+        <span
+          class="hidden md:peer-placeholder-shown:block absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-muted font-mono border border-line rounded px-1.5 pointer-events-none">/</span>
+        <button id="clear" type="button"
+          class="peer-placeholder-shown:hidden absolute right-2.5 top-1/2 -translate-y-1/2 bg-code rounded-md text-[13px] px-2.5 py-1 cursor-pointer">クリア</button>
+      </div>
+      <nav id="chips" aria-label="カテゴリ" class="flex gap-1.5 overflow-x-auto pt-2.5"></nav>
+    </div>
+  </header>
+  <!-- main -->
+  <main
+    class="max-w-[1040px] mx-auto px-5 pt-6 pb-15 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mb-1 [&_.intro]:text-muted [&_.intro]:mb-3 [&_.intro]:max-w-[70ch] [&_p_code,&_li_code,&_.memo_code]:font-mono [&_p_code,&_li_code,&_.memo_code]:text-[12.5px] [&_p_code,&_li_code,&_.memo_code]:bg-code [&_p_code,&_li_code,&_.memo_code]:text-code-ink [&_p_code,&_li_code,&_.memo_code]:px-1.5 [&_p_code,&_li_code,&_.memo_code]:rounded">
+    <!-- 使用方法記載箇所 -->
+    <section class="mb-9" id="setup">
+      <h2>使用方法について</h2>
+      <p class="intro">例はすべて下のサンプル <code>df</code> を前提にしています。コードをクリックするとコピーできます。</p>
+      <pre class="bg-code text-code-ink rounded-lg px-4 py-3.5 overflow-x-auto text-[13px] leading-relaxed my-2.5"><code>import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({
+    "name":  ["佐藤", "鈴木", "高橋", "田中"],
+    "dept":  ["営業", "開発", "営業", "開発"],
+    "sales": [120, 80, np.nan, 150],
+    "date":  ["2026-04-01", "2026-04-15", "2026-05-01", "2026-05-20"],
+})</code></pre>
+      <p class="intro">サンプル <code>コード</code></p>
+    </section>
+
+    <!-- 一覧表示 -->
+    <div id="content"></div>
+    <p id="empty" class="hidden py-10 text-muted [&_strong]:text-ink"></p>
+
+    <!-- Q＆A内容を編集する箇所 -->
+    <section class="mb-9" id="tips">
+      <h2>Q＆A</h2>
+      <ul class="list-disc pl-5 my-2 max-w-[75ch] space-y-1.5">
+        <li><strong>SettingWithCopyWarning</strong>：<code>df[条件]["列"] = 値</code>
+          と書くと出ます。<code>df.loc[条件, "列"] = 値</code> に直すか、抽出結果を <code>.copy()</code> してから編集します。</li>
+        <li><strong>条件の and / or</strong>：DataFrameの条件では使えません。<code>&amp;</code> / <code>|</code> / <code>~</code>
+          を使い、各条件を括弧で囲みます。</li>
+      </ul>
+    </section>
+  </main>
+  <!-- ▼コピー時のお知らせ表示▼ -->
+  <div id="toast" role="status" aria-live="polite"
+    class="fixed left-1/2 bottom-6 -translate-x-1/2 bg-ink text-paper text-[13px] px-4 py-2 rounded-lg z-20 opacity-0 pointer-events-none transition-opacity motion-reduce:transition-none">
+  </div>
+  <!-- ▲END▲ -->
+  <script>
+    // 一覧表示の内容を編集する箇所
+    // ---- データ：[やりたいこと, [コード...], メモ]  ※メモ・intro内の `xxx` はコード表示 ----
+    const DATA = [
+      {
+        id: "data01",
+        name: "読み込み・書き出し",
+        intro: "概要記載",
+        rows: [
+          ["やりたいこと", ["コード1", "コード2"], "備考"],
+          ["列を指定して読む", ["pd.read_csv(\"data.csv\", usecols=[\"name\", \"sales\"])"], "大きいファイルで有効"]
+        ]
+      },
+      {
+        id: "data02",
+        name: "中身の確認",
+        intro: "概要記載",
+        rows: [
+          ["先頭・末尾を見る", ["df.head()", "df.tail(3)"], "既定は5行"],
+          ["ランダムに見る", ["df.sample(5)"], "偏りなく眺めたいとき"]
+        ]
+      },
+    ];
+    // ──── 下記編集不可 ────
+    // スタイル調整
+    const CLS = {
+      chip: "flex-none text-[13px] border border-line rounded-full px-3 py-0.5 cursor-pointer whitespace-nowrap aria-pressed:bg-ink aria-pressed:text-paper aria-pressed:border-ink",
+      row: "grid gap-1 md:gap-3.5 md:grid-cols-[minmax(150px,1.1fr)_minmax(0,2.4fr)_minmax(0,1.3fr)] items-start py-2.5 border-b border-line",
+      cp: "block w-full text-left font-mono text-[13px] leading-[1.55] text-code-ink bg-code border border-transparent hover:border-ink rounded-md px-2.5 py-1.5 cursor-pointer overflow-x-auto whitespace-pre [&+button]:mt-1",
+    };
+    const $ = s => document.querySelector(s);
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
+    const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const show = (el, on) => el.classList.toggle("hidden", !on);
+    let terms = [], cat = "all";
+    const hl = t => !terms.length ? esc(t) :
+      String(t).split(new RegExp("(" + terms.map(reEsc).join("|") + ")", "gi")).map((p, i) => i % 2 ? `<mark>${esc(p)}</mark>` : esc(p)).join("");
+    const rich = t => String(t).split("`").map((p, i) => i % 2 ? `<code>${hl(p)}</code>` : hl(p)).join("");
+    // チップ
+    const chips = $("#chips");
+    chips.innerHTML = [{ id: "all", name: "すべて" }, ...DATA].map(s =>
+      `<button class="${CLS.chip}" type="button" data-cat="${s.id}" aria-pressed="${s.id === "all"}">${esc(s.name)}</button>`).join("");
+    const q = $("#q");
+    function render() {
+      const v = q.value.trim().toLowerCase();
+      terms = v ? v.split(/\s+/) : [];
+      let html = "", total = 0;
+      DATA.forEach(s => {
+        if (cat !== "all" && cat !== s.id) return;
+        const rows = s.rows.filter(r => terms.every(t => [s.name, r[0], ...r[1], r[2]].join(" ").toLowerCase().includes(t)));
+        if (!rows.length) return;
+        total += rows.length;
+        html += `<section class="mb-9" id="${s.id}"><h2>${hl(s.name)}</h2>`;
+        if (s.intro && !terms.length) html += `<p class="intro">${rich(s.intro)}</p>`;
+        html += `<div class="border-t-2 border-ink">` + rows.map(r =>
+          `<div class="${CLS.row}"><div class="font-medium">${hl(r[0])}</div><div>` +
+          r[1].map(c => `<button class="${CLS.cp}" type="button" data-code="${esc(c)}" title="クリックでコピー">${hl(c)}</button>`).join("") +
+          `</div><div class="memo text-muted text-[13.5px]">${rich(r[2])}</div></div>`).join("") + `</div></section>`;
+      });
+      $("#content").innerHTML = html;
+      $("#count").textContent = terms.length ? `${total}件ヒット` : `${total}件`;
+      const empty = $("#empty");
+      show(empty, !total);
+      empty.innerHTML = total ? "" : `「<strong>${esc(v)}</strong>」に一致する項目はありません。別の言葉で試すか、カテゴリを「すべて」に戻してください。`;
+      ["#setup", "#tips"].forEach(id => show($(id), cat === "all" && !terms.length));
+    }
+    q.addEventListener("input", render);
+    $("#clear").addEventListener("click", () => { q.value = ""; q.focus(); render(); });
+    chips.addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b) return;
+      cat = b.dataset.cat;
+      chips.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+      render(); scrollTo({ top: 0 });
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "/" && !e.target.matches("input, textarea")) { e.preventDefault(); q.focus(); q.select(); }
+      if (e.key === "Escape" && e.target === q) { q.value = ""; render(); }
+    });
+    // コピー
+    let tt;
+    const toast = m => { const t = $("#toast"); clearTimeout(tt); t.textContent = m; t.classList.replace("opacity-0", "opacity-100"); tt = setTimeout(() => t.classList.replace("opacity-100", "opacity-0"), 1400); };
+    $("#content").addEventListener("click", e => {
+      const b = e.target.closest("button[data-code]"); if (!b) return;
+      const code = b.dataset.code;
+      const done = () => toast("コピーしました: " + (code.length > 40 ? code.slice(0, 40) + "…" : code));
+      const fallback = () => {
+        const t = Object.assign(document.createElement("textarea"), { value: code, style: "position:fixed;opacity:0" });
+        document.body.append(t); t.select();
+        try { document.execCommand("copy"); done(); } catch (_) { toast("コピーできませんでした。手動で選択してください"); }
+        t.remove();
+      };
+      navigator.clipboard?.writeText ? navigator.clipboard.writeText(code).then(done, fallback) : fallback();
+    });
+    // 表示テーマ
+    const modes = ["auto", "light", "dark"], names = { auto: "自動", light: "ライト", dark: "ダーク" }, KEY = "cheatsheet-theme";
+    let mode = "auto";
+    try { mode = localStorage.getItem(KEY) || "auto"; } catch (_) { }
+    const applyTheme = () => {
+      mode === "auto" ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", mode);
+      $("#theme").textContent = "表示: " + names[mode];
+    };
+    $("#theme").addEventListener("click", () => { mode = modes[(modes.indexOf(mode) + 1) % 3]; try { localStorage.setItem(KEY, mode); } catch (_) { } applyTheme(); });
+    applyTheme(); render();
+  </script>
+</body>
+
+</html>
